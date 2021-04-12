@@ -1,0 +1,124 @@
+.navbar{
+    width: 100%;
+}
+.nav-logo-mobile{
+    display: none;
+}
+.nav-icon-mobile{
+    display: none;
+}
+.navbar-ul{
+    
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+.active{
+    border-top: $rose solid 3px;
+
+}
+
+.navbar-ul a{
+        margin: 0 10px;
+        color: black;
+        padding-top: 25px;
+        display: block;
+        width: 100px;
+        text-align: center;
+        border-top: rgba(255, 255, 255, 0) solid 3px;
+        
+    }
+    
+.navbar-ul a:hover{
+        border-top: $rose solid 3px;
+    }
+.navbar-ul li:nth-child(4){
+        margin: 0;
+        display: block;
+    
+        a{
+            width: 200px;
+        }
+        img{
+            width: 240px;
+            transform: translateX(-20px);
+        }
+
+        a:hover{
+            border-top: rgba(255, 255, 255, 0) solid 3px;
+        }
+    }
+
+
+
+
+@media screen and (max-width: 900px){
+    .mobileNav{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+    .nav-logo-mobile{
+        display: block;
+        img{
+            width: 150px;
+        }
+    }
+    .nav-icon-mobile{
+        display: block;
+        font-size: 30px;
+        color: black;
+        i{
+            width: 25px;
+        }
+    }
+    .navbar-ul{
+            background-color: white;
+        
+            display: flex;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 125px;
+            left: -100%;
+            opacity: 0;
+            transition: all 0.2s ease;
+            flex-direction: column;
+            list-style-type: none;
+            grid-gap: 0px;
+          
+        .active{
+            border-top:none;
+            background-color: $rose;   
+        }
+
+
+        li:nth-child(4){
+            display:none
+        ;}
+    }
+    .nav-item{
+        width: 100%;
+    }
+    .navbar-ul.actived{
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+        align-content: center;
+        padding-left: 0px;
+    }
+    .navbar-ul a{
+        border:none;
+        padding: 10px 0;
+        width: 100%;
+        margin:0
+    }
+    .navbar-ul a:hover{
+        border-top: none;
+        background-color: $rose;
+    }
+
+}

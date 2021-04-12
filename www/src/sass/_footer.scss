@@ -1,0 +1,35 @@
+footer{
+    background-color: $marron;
+    color: $beige;
+    height: auto;
+    ul{
+    
+        display: flex;
+        justify-content: center;
+        a{
+            display: block;
+            color: $beige;
+
+            padding:20px 10px ;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+    }
+    div{
+        text-align: center;
+        padding: 20px 0;
+    }
+}
+@media screen and (max-width: 900px){
+    footer{
+
+        ul{
+            flex-direction: column;
+            padding-top: 20px;
+            a{
+                padding: 5px 20px;
+            }
+        }
+    }
+}

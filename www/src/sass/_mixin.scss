@@ -1,0 +1,8 @@
+@mixin center {
+    margin:0 auto 
+  }
+@mixin centerImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

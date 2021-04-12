@@ -1,0 +1,223 @@
+.main-section{
+   background-image: url(../img/DSC02896.JPG);
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   width:100%;
+   height: 100vh;
+    @include centerImage;
+   
+   >div{
+    width: 50%;
+    height: 40vh;
+    background-color: $marronT;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    h1{
+        color: $beige;
+        text-align: center;
+    }
+    p{
+        text-align: center;
+        color: $beige;
+    }
+    a{
+        color: $beige;
+        border: $beige 1px solid;
+        padding: 10px;
+        transition: all ease-in 0.15s;
+    }
+    a:hover{
+        background-color: $beige;
+        color: $marron;
+    }
+   }    
+   
+
+}
+.home-history{
+    background-color: $marron;
+    padding: 20px 0;
+    .container{
+        width:100% ;
+        height: 100vh;
+        padding: 30px 0;
+
+        .history{
+            background-image: url(../img/History.JPG);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 20px;  
+            width: 60%;
+            height: 100%;
+            @include centerImage;
+            >div{
+                width: 50%;
+                height: 50%;
+                background-color: white;
+                border: 1px solid $marron;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                transform: translatex(100%);
+                h2{
+                    color: $marron;
+                    text-align: center;
+                    font-size: 32px;
+                }
+                .line-separator{
+                    height: 1px;
+                    background-color: $marron;
+                    width: 40%;
+                }
+                p{
+                    color: $marron; 
+                    text-align: center;
+                    width: 70%;
+                }
+                a{
+                    color: $marron;
+                    border: $marron 1px solid;
+                    padding: 10px;
+                    transition: all ease-in 0.15s;
+                    width: 50%;
+                    text-align: center;
+
+                }
+                a:hover{
+                    background-color: $marron;
+                    color: $beige;
+                }
+                
+            }
+            }
+
+    }
+    .fabrique{
+        background-image: url(../img/fabrique.JPG);
+        float: right;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 20px;  
+        width: 60%;
+        height: 100%;
+        @include centerImage;
+        >div{
+            width: 50%;
+            height: 50%;
+            background-color: white;
+            border: 1px solid $marron;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            transform: translatex(-100%);
+            h2{
+                color: $marron;
+                text-align: center;
+                font-size: 32px;
+            }
+            .line-separator{
+                height: 1px;
+                background-color: $marron;
+                width: 40%;
+            }
+            p{
+                color: $marron; 
+                text-align: center;
+                width: 70%;
+            }
+            a{
+                color: $marron;
+                border: $marron 1px solid;
+                padding: 10px;
+                transition: all ease-in 0.15s;
+                width: 50%;
+                text-align: center;
+
+            }
+            a:hover{
+                background-color: $marron;
+                color: $beige;
+            }
+            
+        }
+        }
+
+
+}
+@media screen and (max-width: 1200px){
+    .home-history{
+        .container{
+
+            .history{
+                >div{
+                    width: 75%;
+                    p{
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+    .home-history{
+        .container{
+
+            .fabrique{
+                >div{
+                    width: 75%;
+                    p{
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+
+}
+@media screen and (max-width: 900px){
+    .main-section{
+        >div{
+            width: 70%;
+        }
+    }
+    .home-history{
+        .container{ 
+            padding-bottom: 300px;
+
+            .history{
+                width: 100%;
+                background-position: 20% 100%;
+                >div{
+                    width: 80%;
+                    transform: translate(0%,90%);
+                    p{
+                        width: 90%;
+                    }
+                }
+            }
+            .fabrique{
+                width: 100%;
+                background-position: 40% 100%;
+                >div{
+                    width: 80%;
+                    transform: translate(0%,90%);
+                    p{
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 600px){
+    .main-section{
+        background-position: 25% 100%;
+        >div{
+            width: 90%;
+        }
+    }
+}
