@@ -7,7 +7,6 @@ const Politique = () => {
     const[title,setTitle]=useState("")
     const[body,setBody]=useState("")
     const[date,setDate]=useState("")
-    const[img,setImg]=useState("")
     const[redirect,setRedirect]=useState("")
 
     const submit=async(e)=>{
