@@ -23,17 +23,17 @@ const Navbar = () => {
           <ul className=  {click ? "  actived navbar-ul" : " navbar-ul"}>
             <li className="nav-item">
               <div>
-              <NavLink className="nav-link" to="/"onClick={closeMobileMenu} >Accueil</NavLink>
+              <NavLink className="nav-link"exact to="/"onClick={closeMobileMenu} >Accueil</NavLink>
             </div>
             </li>
             <li className="nav-item">
               <div>
-                <NavLink className="nav-link" to="/biscuits"onClick={closeMobileMenu}>Nos biscuits</NavLink>
+                <NavLink className="nav-link"exact to="/biscuits"onClick={closeMobileMenu}>Nos biscuits</NavLink>
                 </div>
             </li>
             <li className="nav-item">
               <div>
-              <NavLink className="nav-link" to="/actualite"onClick={closeMobileMenu}>Actualité</NavLink>
+              <NavLink className="nav-link" exact to="/actualite"onClick={closeMobileMenu}>Actualité</NavLink>
               </div>
             </li>
             <li className="nav-item logo">
@@ -41,12 +41,12 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <div>
-              <NavLink className="nav-link" to="/boutique"onClick={closeMobileMenu}>Boutique</NavLink>
+              <NavLink className="nav-link" exact to="/boutique"onClick={closeMobileMenu}>Boutique</NavLink>
               </div>
             </li>
             <li className="nav-item">
               <div>
-                <NavLink className="nav-link" to="/compte"onClick={closeMobileMenu}>Mon compte</NavLink>
+                <NavLink className="nav-link"exact to="/compte"onClick={closeMobileMenu}>Mon compte</NavLink>
                 </div>
             </li>
             <li className="nav-item">

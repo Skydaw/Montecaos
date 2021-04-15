@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import Articleall from '../components/Articleall'
+import Articleall from '../components/article/Articleall'
 import Article from './Article'
 import Modifarticle from './Modifarticle'
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import CreerArticle from '../components/CreerArticle';
+import CreerArticle from '../components/article/CreerArticle';
 
 
 const url ='http://localhost:5000/api/blog'

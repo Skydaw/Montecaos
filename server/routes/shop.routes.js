@@ -109,11 +109,11 @@ router.get('/',async (req, res) => {
     try {
         const product = await Product.find()
         res.json(product)
+        res.send(product)      
     } catch (error) {
         console.warn(error)
         res.json({message: error.message})
     }
-    res.send(product)      
 })
 
    // route for single post

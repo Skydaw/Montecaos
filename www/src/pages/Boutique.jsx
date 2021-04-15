@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import ProductAll from '../components/ProductAll'
+import ProductAll from '../components/produit/ProductAll'
 import ModifProduct from './ModifProduct'
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import CreerArticle from '../components/CreerProduit';
+import CreerArticle from '../components/produit/CreerProduit';
 import Product from './Product';
 
 
@@ -33,13 +33,13 @@ const Boutique = () => {
             <Router>
 
             <Switch>
-                <Route name="creer" path='/boutique/creer-article'>
+                <Route name="creer" exact path='/boutique/creer-article'>
                   <CreerArticle/>
                 </Route>
-                <Route name="modification" path='/boutique/modifier/:producturl'>
+                <Route name="modification" exact path='/boutique/modifier/:producturl'>
                   <ModifProduct/>
                 </Route>
-                <Route name="Single" path="/boutique/:producturl">
+                <Route name="Single" exact path="/boutique/:producturl">
                   <Product/>
                 </Route>
                 <Route path="/boutique" exact>

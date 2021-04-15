@@ -8,3 +8,14 @@
 .hide{
     display: none;
 }
+form{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    margin: 5px 0;
+    width: 400px;
+}
+button{
+    width: 400px;
+}
