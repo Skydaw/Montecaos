@@ -26,6 +26,7 @@ router.post('/register', async (req,res)=>{
         codepostal:req.body.codepostal,
         pays:req.body.pays,
         telephone:req.body.telephone,
+        role:req.body.role
     })
 
    await user.save()
@@ -77,22 +78,18 @@ router.post('/login',async (req,res)=>{
 router.get('/', async (req,res)=>{
 
     try{
-        console.log('avant cookie')
         // recuperer cookie present sur la machine
         const cookie = req.cookies['jwt'];
 
-        console.log('apres cookies')
         //Je vérifie que le cookie via la méthode verify de jwt -> Je vais retourner l'id utilisé pour le cookie et un id de cryptage
         
         const claims= await jwt.verify(cookie,'secret');
         // si cookie non valide
         if(!claims){
-            console.log('pendant le check')
             return res.status(401).send({
                 message:'Not authentified'
             })
         }
-        console.log('apres check')
         // si cookie valide
         const user = await User.findOne({_id:claims._id})
         const {password, ...data}= await user.toJSON();
@@ -106,10 +103,39 @@ router.get('/', async (req,res)=>{
         })
     }
 })
+router.put('/modifier/:_id',(req,res)=>{
+    User.findOne({_id:req.params._id},function(err,user){
+        if(err){
+            res.send(err)
+        }
+        else{
+            console.log(req.body)
+            user.nom=req.body.nom,
+            user.prenom=req.body.prenom,
+            user.datenaissance=req.body.datenaissance,
+            user.email=req.body.email,
+            user.adresse=req.body.adresse,
+            user.complement=req.body.complement,
+            user.ville=req.body.ville,
+            user.codepostal=req.body.codepostal,
+            user.pays=req.body.pays,
+            user.telephone=req.body.telephone,
+            user.save(function(err){
+                if(err){
+                    res.send
+                }
+                else{
+                    res.json({message:'Mise à jour effectuée'})
+                }
+            })
+            
+        }
+    })
+})
 
 // se deconnecter
 router.post('/logout',(req,res)=>{
-    res.cookie('jwt','',{maxAge:0});
+    res.cookie('jwt','',{maxAge:'1'});
     res.send({
         message:'Successfully logged out'
     })

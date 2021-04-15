@@ -1,12 +1,11 @@
   
 import React, {useState,useContext} from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { UserContext } from '../../js/UserContext'
 
 
 const Login = () => {
-    // eslint-disable-next-line no-unused-vars
-    const{user,setUser}=useContext(UserContext)
+    const{setUser}=useContext(UserContext)
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
 
@@ -33,7 +32,6 @@ const Login = () => {
         if(content._id){
             setUser(content);
         }
-        window.location.href = 'http://localhost:3000/user'
 
     }
  

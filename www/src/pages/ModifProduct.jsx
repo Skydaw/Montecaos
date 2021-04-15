@@ -26,7 +26,6 @@ const ModifProduct = () => {
 
 
 
-    // appel article a modifier
 
     // modification du product
     async function uploadData() {

@@ -144,7 +144,7 @@ router.put('/:producturl',async (req,res) =>{
                     res.send
                     }
                     else{
-                        res.json({message:'Mise a jour effectuée'})
+                        res.json({message:'Mise à jour effectuée'})
                     }
                 })
             }

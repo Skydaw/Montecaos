@@ -1,5 +1,5 @@
   
-import React ,{ useState } from 'react'
+import React ,{ useEffect, useState } from 'react'
 import {Redirect} from 'react-router-dom'
 
 
@@ -17,6 +17,7 @@ const Register = () => {
     const[pays,setPays]=useState("")
     const[telephone,setTelephone]=useState("")
     const[redirect,setRedirect]=useState("")
+    const [role,setRole]=useState("")
 
     const submit=async(e)=>{
         e.preventDefault();
@@ -35,14 +36,17 @@ const Register = () => {
                 ville,
                 codepostal,
                 pays,
-                telephone
+                telephone,
+                role
             })
         })
-        console.log('yo')
 
         setRedirect(true)
     
     }
+    useEffect(()=>{
+        setRole('user')
+    },[])
     
     if(redirect){
     return <Redirect to="/compte"/>
