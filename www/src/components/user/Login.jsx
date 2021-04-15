@@ -9,7 +9,6 @@ const Login = () => {
     const{user,setUser}=useContext(UserContext)
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
-    const[redirect,setRedirect]=useState("")
 
 
     const submit=async(e)=>{
@@ -34,11 +33,10 @@ const Login = () => {
         if(content._id){
             setUser(content);
         }
+        window.location.href = 'http://localhost:3000/user'
 
     }
-    if(redirect){
-    return <Redirect to="/compte"/>
-    }
+ 
     return (
         <div>
 

@@ -108,7 +108,6 @@ router.post ("/", async (req,res)=>{
 router.get('/',async (req, res) => {
     try {
         const product = await Product.find()
-        res.json(product)
         res.send(product)      
     } catch (error) {
         console.warn(error)

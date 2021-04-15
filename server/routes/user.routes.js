@@ -77,20 +77,22 @@ router.post('/login',async (req,res)=>{
 router.get('/', async (req,res)=>{
 
     try{
-        
+        console.log('avant cookie')
         // recuperer cookie present sur la machine
         const cookie = req.cookies['jwt'];
 
-        
+        console.log('apres cookies')
         //Je vérifie que le cookie via la méthode verify de jwt -> Je vais retourner l'id utilisé pour le cookie et un id de cryptage
         
         const claims= await jwt.verify(cookie,'secret');
         // si cookie non valide
         if(!claims){
+            console.log('pendant le check')
             return res.status(401).send({
                 message:'Not authentified'
             })
         }
+        console.log('apres check')
         // si cookie valide
         const user = await User.findOne({_id:claims._id})
         const {password, ...data}= await user.toJSON();

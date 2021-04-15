@@ -1,5 +1,6 @@
 
 require('dotenv/config');
+const cookieParser =require("cookie-parser")
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -15,6 +16,7 @@ const shopRoutes = require('./routes/shop.routes')
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser())
 
 app.use(cors({
     credentials:true,

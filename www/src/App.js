@@ -29,14 +29,24 @@ function App() {
   useEffect(()=>{
     (
         async () => {
-          axios.get('http://localhost:5000/api/user/')
+            await axios({
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'},
+                withCredentials: true,
+                url:'http://localhost:5000/api/user/'
+            })
+            .then((response)=>{
+              console.log(response.data)
+              const content =  response.data;
+              if(content._id){
+                  setUser(content);
+              }
+            }).catch((err)=>{
+              console.log(err)
+            })
 
 
-            const content = await response.json();
 
-            if(content._id){
-                setUser(content);
-            }
 
         }
     )()
