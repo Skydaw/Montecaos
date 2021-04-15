@@ -1,24 +1,27 @@
 const mongoose = require('mongoose')
  
 
-const blogSchema = new mongoose.Schema({
-    titleurl:{
+const productSchema = new mongoose.Schema({
+    producturl:{
         type:String,
         unique:true
     },
-    title:{
+    name:{
         type: String,
         unique:true
     },
-    body:{
+    description:{
      type: String,
     },
-    date:{
+    price:{
     type: String,
     },
-    img: {
+    feature: {
     type: String
+    },
+    img:{
+        type:String
     }
 
 })
-module.exports = mongoose.model('Blog',blogSchema)
+module.exports = mongoose.model('Product',productSchema)

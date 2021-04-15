@@ -15,7 +15,7 @@ const router = require("express").Router();
 router.use(cors())
 router.use(bodyParser.json());
 // appel du model
-const Blog = require('../models/blog.model');
+const Product = require('../models/product.model');
 
 
 // logique et post image
@@ -23,7 +23,7 @@ const conn = mongoose.createConnection(mongoURI);
 let gfs;
    conn.once("open", () => {
      gfs = Grid(conn.db, mongoose.mongo);
-     gfs.collection("uploads");
+     gfs.collection("shopUpload");
      console.log("Connection Successful");
    }); 
 
@@ -40,7 +40,7 @@ let storage = new GridFsStorage({
           const filename = file.originalname;
           const fileInfo = {
             filename: filename,
-            bucketName: "uploads"
+            bucketName: "shopUpload"
           };
           resolve(fileInfo);
         });
@@ -77,7 +77,7 @@ router.get("/image/:filename", (req, res) => {
   });
   // delete image
   router.delete('/image/:filename', (req,res) =>{
-      gfs.remove({filename: req.params.filename , root:'uploads'},(err)=>{
+      gfs.remove({filename: req.params.filename , root:'shopUpload'},(err)=>{
         if(err){
           return res.status(404).json({err:err})
         }
@@ -88,15 +88,16 @@ router.get("/image/:filename", (req, res) => {
 // route post un nouvelle article
 router.post ("/", async (req,res)=>{
 
-  const blog = new Blog({
-      titleurl:req.body.titleurl,
-      title: req.body.title,
-      body: req.body.body,
-      date: req.body.date,
+  const product = new Product({
+      producturl:req.body.producturl,
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      feature:req.body.feature,
       img:req.body.img,
       
   }) 
-   await blog.save()
+   await product.save()
       .then((result)=>{
       res.send(result);
   }).catch((err)=> next(err))
@@ -106,21 +107,21 @@ router.post ("/", async (req,res)=>{
 // route for all post
 router.get('/',async (req, res) => {
     try {
-        const blog = await Blog.find()
-        res.json(blog)
+        const product = await Product.find()
+        res.json(product)
     } catch (error) {
         console.warn(error)
         res.json({message: error.message})
     }
-    res.send(blog)      
+    res.send(product)      
 })
 
    // route for single post
 
-router.get('/:titleurl',async (req, res) => {
+router.get('/:producturl',async (req, res) => {
     try {
-       const blog = await Blog.findOne({titleurl:req.params.titleurl})
-       res.json(blog)
+       const product = await Product.findOne({producturl:req.params.producturl})
+       res.json(product)
 
     } catch (error) {
         console.warn(error)
@@ -128,17 +129,18 @@ router.get('/:titleurl',async (req, res) => {
     }
 })
 
-router.put('/:titleurl',async (req,res) =>{
-    Blog.findOne({titleurl:req.params.titleurl},function(err, blog){
+router.put('/:producturl',async (req,res) =>{
+    Product.findOne({producturl:req.params.producturl},function(err, product){
         if (err){
             res.send(err)
         }
         else{
                 
-            blog.title=req.body.title;
-            blog.body=req.body.body;
-            blog.date=req.body.date;
-            blog.save(function(err){
+            product.name=req.body.name;
+            product.description=req.body.description;
+            product.price=req.body.price;
+            product.feature=req.body.feature;
+            product.save(function(err){
                     if(err){
                     res.send
                     }
@@ -151,8 +153,8 @@ router.put('/:titleurl',async (req,res) =>{
     })
 
 })
-router.delete('/:titleurl',async (req,res) =>{
-    Blog.remove({titleurl:req.params.titleurl},function(err, blog){
+router.delete('/:producturl',async (req,res) =>{
+    Product.remove({producturl:req.params.producturl},function(err, product){
         if (err){
             res.send(err)
         }

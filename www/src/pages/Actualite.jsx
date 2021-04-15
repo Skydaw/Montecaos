@@ -3,7 +3,8 @@ import axios from 'axios';
 import Articleall from '../components/Articleall'
 import Article from './Article'
 import Modifarticle from './Modifarticle'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import CreerArticle from '../components/CreerArticle';
 
 
 const url ='http://localhost:5000/api/blog'
@@ -15,7 +16,6 @@ const Actualite = () => {
       try {
         const res = await axios.get(url);
         setBlog(res.data);
-        console.log(res.data)
   
       } catch (error) {
         console.error(error);
@@ -33,14 +33,19 @@ const Actualite = () => {
             <Router>
 
             <Switch>
+                <Route name="creer" path='/actualite/creer-article'>
+                  <CreerArticle/>
+                </Route>
                 <Route name="modification" path='/actualite/modifier/:titleurl'>
-                    <Modifarticle/>
+                  <Modifarticle/>
                 </Route>
                 <Route name="Single" path="/actualite/:titleurl">
-                    <Article/>
+                  <Article/>
                 </Route>
-                <Route key='/actualite' path="/actualite" exact>
-                <Articleall  blog={blog} />
+                <Route path="/actualite" exact>
+                  <NavLink to='/actualite/creer-article'>Creer un article</NavLink>
+                  <br/>
+                  <Articleall  blog={blog} />
                 </Route>
 
 

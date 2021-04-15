@@ -2,6 +2,7 @@
 require('dotenv/config');
 const userRoutes = require('./routes/user.routes');
 const blogRoutes = require('./routes/blog.routes')
+const shopRoutes = require('./routes/shop.routes')
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -24,6 +25,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true });
 // Route
 app.use('/api/user', userRoutes);
 app.use('/api/blog', blogRoutes);
+app.use('/api/shop', shopRoutes)
 
 
 

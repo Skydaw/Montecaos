@@ -4,11 +4,11 @@ import axios from 'axios'
 
 
 
-const url = "http://localhost:5000/api/blog"
+const url = "http://localhost:5000/api/shop"
 
 
 
-const Article = () => {
+const Product = () => {
     const[single,setSingle]=useState({});
 
     
@@ -17,7 +17,7 @@ const Article = () => {
     
     
     const getSingle = async () =>{  
-        const res = await axios.get(`${url}/${match.params.titleurl}`);
+        const res = await axios.get(`${url}/${match.params.producturl}`);
         
     
         setSingle(res.data);
@@ -38,13 +38,14 @@ const Article = () => {
     return (
         <>
         <div className="article">
-            <h2 className="title-single">{single.title}</h2>
+            <h2 className="title-single">{single.name}</h2>
             <img className="img" alt='Ilustration article Blog' src={single.img}></img>
 
-            <pre className="content-single">{single.body}</pre>
-            <p className="tags-single">{single.date}</p>
+            <pre className="content-single">{single.description}</pre>
+            <p className="tags-single">{single.price}</p>
+            <pre clclassName="content-single">{single.feature }</pre>
         </div>
         </>
     )
 }
-export default Article
+export default Product

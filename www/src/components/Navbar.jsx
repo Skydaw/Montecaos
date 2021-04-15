@@ -28,7 +28,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <div>
-                <NavLink className="nav-link" to="/biscuits"onClick={closeMobileMenu} >Nos biscuits</NavLink>
+                <NavLink className="nav-link" to="/biscuits"onClick={closeMobileMenu}>Nos biscuits</NavLink>
                 </div>
             </li>
             <li className="nav-item">
