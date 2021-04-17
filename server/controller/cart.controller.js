@@ -3,7 +3,6 @@ const Cart = require("../models/cart.model");
     
 
 exports.addItemToCart = async (req, res) => {
-    console.log(req.body)
     const {productId}= req.body
     const userid =req.body.userid
     const _id =req.body.productId._id
@@ -88,9 +87,7 @@ exports.addItemToCart = async (req, res) => {
             res.json(cart);
         }
     } catch (err) {
-        console.log("err")
 
-        console.log(err)
         res.status(400).json({
             type: "Invalid",
             msg: "Something went wrong",
@@ -121,13 +118,13 @@ exports.getCart = async (req, res) => {
                 msg: "Cart not Found",
             })
         }
+        console.log(cart.items)
         res.status(200).json({
-            status: true,
+            status: true,   
             data: cart
         })
-        console.log('cart')
+         
     } catch (err) {
-        console.log(err)
         res.status(400).json({
             type: "Invalid",
             msg: "Something went wrong",
@@ -145,8 +142,6 @@ exports.emptyCart = async (req, res) => {
                 path: "items.productId",
                 select: "name price total"
             });;
-            console.log('yo')
-            console.log(carts);
             return carts[0];
         };
 
@@ -162,7 +157,6 @@ exports.emptyCart = async (req, res) => {
             data: data
         })
     } catch (err) {
-        console.log(err)
         res.status(400).json({
             type: "Invalid",
             msg: "Something went wrong",

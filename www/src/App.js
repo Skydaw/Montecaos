@@ -18,6 +18,7 @@ import Contact from './pages/Contact';
 import { useEffect, useMemo, useState } from 'react';
 import { UserContext } from './js/UserContext';
 import axios from 'axios';
+import paiement from './pages/Paiement';
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/conditions-generales-de-vente" exact component={Cgv}/>
           <Route path="/mentions-legales" exact component={Mention}/>
           <Route path="/politique-de-confidentialite" exact component={Politique}/>
+          <Route path='/Paiement'exact component={paiement}/>
         </Switch>
       </main>
       <Footer/>
