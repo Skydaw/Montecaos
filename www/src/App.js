@@ -55,28 +55,30 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
 
       <UserContext.Provider value={value}>
+      <BrowserRouter >
+
+
 
       <Navbar/>
       <main>
         <Switch>
           <Route path="/" exact component={Accueil}/> 
-          <Route path="/biscuits"  component={Biscuits}/>
-          <Route path="/actualite"  component={Actualite}/>
-          <Route path="/boutique"  component={Boutique}/>
-          <Route path="/compte"  component={Compte}/>
-          <Route path="/panier" component={Panier}/>
-          <Route path="/contact" component={Contact}/>
-          <Route path="/conditions-generales-de-vente" component={Cgv}/>
-          <Route path="/mentions-legales" component={Mention}/>
-          <Route path="/politique-de-confidentialite" component={Politique}/>
+          <Route path="/biscuits" exact  component={Biscuits}/>
+          <Route path="/actualite" exact component={Actualite}/>
+          <Route path="/boutique" exact component={Boutique}/>
+          <Route path="/compte" exact component={Compte}/>
+          <Route path="/panier"exact component={Panier}/>
+          <Route path="/contact" exact component={Contact}/>
+          <Route path="/conditions-generales-de-vente" exact component={Cgv}/>
+          <Route path="/mentions-legales" exact component={Mention}/>
+          <Route path="/politique-de-confidentialite" exact component={Politique}/>
         </Switch>
       </main>
       <Footer/>
-      </UserContext.Provider>
       </BrowserRouter>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import{Link} from'react-router-dom'
+import{Link } from'react-router-dom'
 
 
 
@@ -10,8 +10,7 @@ import{Link} from'react-router-dom'
 const Articleall = ({blog}) => {
     
     const url = "http://localhost:5000/api/blog";
-    
-    
+
     
     return(
         <>    
@@ -51,6 +50,7 @@ const Articleall = ({blog}) => {
                     removeClass.classList.add('hide')
                 })
             }
+
 
             return (
                 <div key={_id} >

@@ -39,14 +39,14 @@ const Login = () => {
         <div>
 
             <form onSubmit={submit}>
-                <h1 className="h3 mb-3 fw-normal">Se connecter</h1>
+                <h1 className="h3 mb-3 fw-normal">S'identifier</h1>
                     <input type="email" className="form-control" required  placeholder="name@example.com"value={email}
                     onChange={e=>setEmail(e.target.value)}
                     />
                     <input type="password" className="form-control" required placeholder="Password"value={password}
                     onChange={e=>setPassword(e.target.value)}
                     />
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <button className="w-100 btn btn-lg btn-primary" type="submit">Continuer</button>
             </form>
             <p>Pas de compte? <Link to='/compte/register'>Creer en un!</Link></p>                
         </div>

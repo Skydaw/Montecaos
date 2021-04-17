@@ -1,5 +1,10 @@
 import axios from 'axios';
-import{Link} from'react-router-dom'
+import { useContext, useState } from 'react';
+
+import{Link, Redirect} from'react-router-dom'
+import { UserContext } from '../../js/UserContext'
+
+
 
 
 
@@ -8,15 +13,22 @@ import{Link} from'react-router-dom'
 
 
 const ProductAll = ({product}) => {
-    
+    const{user}=useContext(UserContext);
+
+
+
     const url = "http://localhost:5000/api/shop";
     
+    
+
     
     
     return(
         <>    
         {product.map((p,i) => {
+
             const { _id, producturl, name, description, price, img} = p;
+
             const imgName= img.substr(37)
             async function del() {
                 const imgUrl =`${url}/image/${imgName}`;
@@ -51,7 +63,35 @@ const ProductAll = ({product}) => {
                     removeClass.classList.add('hide')
                 })
             }
-
+            function addCart(){
+                if(!user){
+                    document.location.href="http://localhost:3000/compte"
+                }else{
+                    const userid=`${user._id}`
+                    console.log(userid)
+                    const urlCart = `http://localhost:5000/api/cart/`
+                    console.log(urlCart)
+                    try{
+                        axios.post(urlCart,{
+                            userid,
+                            productId:{
+                            _id,
+                            name,
+                            price
+                            },
+                            quantity:1,
+                            price
+                        })
+                        console.log('done')
+                        // document.location.href="http://localhost:3000/panier"
+                    }catch(error){
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    }
+                }
+            }
+            
             return (
                 <div key={_id}>
                 <Link to={`boutique/${producturl}`}>
@@ -62,6 +102,7 @@ const ProductAll = ({product}) => {
                     <h2  className="title-article">{name}</h2>
                     <pre  className="content-article" >{description}...</pre>
                     <p  className="tags-article">{price}</p>
+                    <button onClick= {addCart} >Ajouter au panier</button>
                     <Link  to={`boutique/modifier/${producturl}`}>Modifier</Link>
                     <button  onClick={verif}>Suprimmer l'article</button>
                     <p className={`delmethod${producturl} hide`}>Êtes-vous sûrs ?</p>

@@ -1,3 +1,4 @@
+import Paiement from "../components/tunnel-vente/Paiement"
 
 
 const Cgv  = () => {
@@ -7,7 +8,7 @@ const Cgv  = () => {
       return (
         
         <div className="container">
-            Cgv
+            <Paiement/>
         </div>
       );
     }

@@ -31,8 +31,13 @@ const Boutique = () => {
         <div>
             <h1>Boutique</h1>
             <Router>
-
             <Switch>
+            <Route path="/boutique" exact>
+                  <NavLink to='/boutique/creer-article'>Creer un produit</NavLink>
+                  <br/>
+                  <ProductAll  product={product} />
+                </Route>
+
                 <Route name="creer" exact path='/boutique/creer-article'>
                   <CreerArticle/>
                 </Route>
@@ -42,11 +47,7 @@ const Boutique = () => {
                 <Route name="Single" exact path="/boutique/:producturl">
                   <Product/>
                 </Route>
-                <Route path="/boutique" exact>
-                  <NavLink to='/boutique/creer-article'>Creer un produit</NavLink>
-                  <br/>
-                  <ProductAll  product={product} />
-                </Route>
+
 
 
             </Switch>

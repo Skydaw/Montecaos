@@ -4,6 +4,7 @@ const Politique = () => {
 return(
 
     <>
+    Politique
 
 </>
 )

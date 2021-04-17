@@ -12,6 +12,7 @@ const port = process.env.PORT;
 const userRoutes = require('./routes/user.routes');
 const blogRoutes = require('./routes/blog.routes')
 const shopRoutes = require('./routes/shop.routes')
+const cartRoutes = require('./routes/cart.routes')
 
 const app = express();
 
@@ -35,7 +36,8 @@ mongoose.connect(mongoURI, {
 // Route
 app.use('/api/user', userRoutes);
 app.use('/api/blog', blogRoutes);
-app.use('/api/shop', shopRoutes)
+app.use('/api/shop', shopRoutes);
+app.use('/api/cart', cartRoutes);
 
 
 
