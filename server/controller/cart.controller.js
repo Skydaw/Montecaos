@@ -3,6 +3,7 @@ const Cart = require("../models/cart.model");
     
 
 exports.addItemToCart = async (req, res) => {
+    console.log(req.body)
     const {productId}= req.body
     const userid =req.body.userid
     const _id =req.body.productId._id
@@ -16,8 +17,7 @@ exports.addItemToCart = async (req, res) => {
                 path: "items.productId",
                 select: "name price total"
             });;
-            console.log('yo')
-            console.log(carts);
+
             return carts[0];
         };
         let cart = await getcart();
@@ -100,16 +100,15 @@ exports.addItemToCart = async (req, res) => {
 }
 // recupere le chariot
 exports.getCart = async (req, res) => {
+
     try {
-        const userid =req.body.userid
+        const userid =req.params.userid
 
         getcart = async () => {
             const carts = await Cart.find({"userid":userid}).populate({
                 path: "items.productId",
                 select: "name price total"
             });;
-            console.log('yo')
-            console.log(carts);
             return carts[0];
         };
 
@@ -126,6 +125,7 @@ exports.getCart = async (req, res) => {
             status: true,
             data: cart
         })
+        console.log('cart')
     } catch (err) {
         console.log(err)
         res.status(400).json({

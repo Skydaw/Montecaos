@@ -83,7 +83,7 @@ const ProductAll = ({product}) => {
                             price
                         })
                         console.log('done')
-                        // document.location.href="http://localhost:3000/panier"
+                        document.location.href="http://localhost:3000/panier"
                     }catch(error){
                         console.log(error.response.data);
                         console.log(error.response.status);

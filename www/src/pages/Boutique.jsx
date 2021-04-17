@@ -11,6 +11,7 @@ const url ='http://localhost:5000/api/shop'
 
 const Boutique = () => {
     const [product,setProduct] = useState([]);
+    
   
     async function getPosts() {
       try {
