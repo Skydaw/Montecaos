@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 const Schema =mongoose.Schema
 let ItemSchema = new Schema({
     productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
+        type:String,
+        require:true
+    },
+    productName:{
+        type:String,
+        required:true
     },
     quantity:{
         type:Number,
@@ -30,7 +34,6 @@ let ItemSchema = new Schema({
         items: [ItemSchema],
 
         subTotal: {
-            default: 0,
             type: Number
         }
     }, {

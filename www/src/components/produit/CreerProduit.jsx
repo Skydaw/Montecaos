@@ -13,7 +13,7 @@ const CreerProduit  = () => {
     const[feature2,setFeature2]=useState("")
     const[name2,setName2]=useState("")
     const[body2,setBody2]=useState("")
-    const[date2,setDate2]=useState("")
+    const[price2,setPrice2]=useState("")
 
     const espace = / /gi
 
@@ -69,7 +69,7 @@ const CreerProduit  = () => {
             ...{img}
         });
         setBody2(description)
-        setDate2(price)
+        setPrice2(price)
         setName2(name)
         setFeature2(feature)
 
@@ -116,13 +116,13 @@ const CreerProduit  = () => {
                     for(let i = 0; i < accent.length; i++){
                         tag = tag.replace(accent[i], noaccent[i]);
                     }
-                    setProducturl(tag.replace(espace,"-"))
+                    setProducturl(tag.replace(espace,"-").replace("!","").replace(':',''))
 
                     }
                     }/>
                 </div>
                 <div>
-                    <label htmlFor="desc">Info Produit</label>
+                    <label htmlFor="desc">Description du Produit</label>
                     <textarea type="text" className="form-control"required placeholder=""id='username-input'
                     onChange={(e)=>{
                     const newBody=e.target.value
@@ -131,12 +131,12 @@ const CreerProduit  = () => {
                 }/>
                 </div>
                 <div>
-                    <label htmlFor="name">Prix</label>
-                    <input type="text" className="form-control"required placeholder=""id='username-input'
+                    <label htmlFor="name">Prix(uniquement le nombre)</label>
+                    <input type="number" step="any" className="form-control"required placeholder=""id='username-input'
                     onChange={e=>setPrice(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="name">Caracteristiques du produit</label>
+                    <label htmlFor="name">Caracteristiques du produit(bio ou autre)</label>
                     <input type="text" className="form-control"required placeholder=""id='username-input'
                     onChange={e=>setFeature(e.target.value)}/>
                 </div>
@@ -157,7 +157,7 @@ const CreerProduit  = () => {
                 </div>
                 <pre className="content-single">{body2}</pre>
 
-            <p className="tags-single">{date2}</p>
+            <p className="tags-single">{price2}€</p>
             <pre className="content-single">{feature2}</pre>
 
             <button onClick={uploadData}>Sauvegarder les modifications</button>

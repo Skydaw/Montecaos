@@ -19,43 +19,39 @@ import { useEffect, useMemo, useState } from 'react';
 import { UserContext } from './js/UserContext';
 import axios from 'axios';
 import paiement from './pages/Paiement';
+import AdminPanel from './pages/AdminPanel';
 
 
 function App() {
   
   const [user,setUser]=useState(null)
   
-  const value = useMemo(()=> ({user,setUser}),[user,setUser])
   
   useEffect(()=>{
     (
-        async () => {
-            await axios({
-                method: 'GET',
+      async () => {
+        await axios({
+          method: 'GET',
                 headers: {'Content-Type': 'application/json'},
                 withCredentials: true,
                 url:'http://localhost:5000/api/user/'
             })
             .then((response)=>{
-              console.log(response.data)
               const content =  response.data;
               if(content._id){
-                  setUser(content);
+                setUser(content);
               }
             }).catch((err)=>{
               console.log(err)
             })
+          }
+          )()
+        }, [])
+        
+        const value = useMemo(()=> ({user,setUser}),[user,setUser])
 
-
-
-
-        }
-    )()
-  }, [])
-  
-
-  return (
-    <div className="App">
+        return (
+          <div className="App">
 
       <UserContext.Provider value={value}>
       <BrowserRouter >
@@ -76,6 +72,7 @@ function App() {
           <Route path="/mentions-legales" exact component={Mention}/>
           <Route path="/politique-de-confidentialite" exact component={Politique}/>
           <Route path='/Paiement'exact component={paiement}/>
+          <Route path="/128462" exat component={AdminPanel}/>
         </Switch>
       </main>
       <Footer/>

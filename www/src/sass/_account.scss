@@ -1,0 +1,152 @@
+.btn{    
+    color: $marron;
+    border: $marron 1px solid;
+    padding: 10px;
+    transition: all ease-in 0.15s;
+    width: 60%;
+    text-align: center;
+    margin: 20px 20% 10px;   
+}
+.btn:hover{
+    color:white;
+    background-color: $marron;
+}
+.account{
+    min-height: 100vh;
+    background-color: $beige;
+    .form-login{
+        width: 30%;
+        background-color: white;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        .label{
+            margin: 10px 10%
+        }
+        input{
+            height: 25px;
+            width: 80%;
+            margin: 0 10%;
+        }
+        p{
+            margin: 0px auto 20px;
+        }
+        a{
+            font-weight:800 ;
+            color: $rose;
+        }
+    }
+    .form-register{
+        width: 30%;
+        background-color: white;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 20px    auto;
+        .label{
+            margin: 10px 10%
+        }
+        input{
+            height: 25px;
+            width: 90%;
+            margin: 0 5%;
+        }
+        p{
+            margin: 0px auto 20px;
+        }
+        a{
+            font-weight:800 ;
+            color: $rose;
+        }
+    }
+    .user-change{
+        width: 100%;
+        background-color: white;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 20px    auto;
+        .label{
+            margin: 10px 10%
+        }
+        input{
+            height: 25px;
+            width: 90%;
+            margin: 0 5%;
+        }
+
+
+    }
+    .user-div{
+        width: 40%;
+        background-color: white;
+        margin: auto;
+        min-height: 30vh;
+        h2{
+            text-align: center;
+        }
+        a{
+            display: block;
+        }
+        .disconect{
+            color: red;
+            border: red 1px solid;
+            padding: 10px;
+            transition: all ease-in 0.15s;
+            width: 60%;
+            text-align: center;
+            margin: 20px 20% 10px;
+        }
+        .disconect:hover{
+            background-color: red;
+            color: white;
+        }
+
+    }
+    
+}
+.bottom{
+    height: 1px;
+}
+@media screen and (max-width: 1300px){
+    .account{
+        .form-register{
+            width: 40%;
+    }
+    .form-login{
+        width: 40%;
+    }
+    .user-div{
+        width: 40%;
+    }
+
+}
+}
+@media screen and (max-width: 900px){
+    .account{
+        .form-register{
+            width: 60%;
+    }
+    .form-login{
+        width: 60%;
+    }
+    .user-div{
+        width: 60%;
+    }
+
+}
+}
+@media screen and (max-width: 500px){
+    .account{
+        .form-register{
+            width: 80%;
+    }
+    .form-login{
+        width: 80%;
+    }
+    .user-div{
+        width: 80%;
+    }
+}
+}

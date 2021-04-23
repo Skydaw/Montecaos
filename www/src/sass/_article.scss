@@ -1,0 +1,125 @@
+.actualité{
+    background-color: $marron;
+    margin-bottom: 0;
+    padding-bottom: 50px ;
+    a{
+        color: $rose;
+        font-weight: 600;
+        font-size: 22px;
+    }   
+    a:hover{
+        transition: all ease-in 0.1s;
+        text-decoration: underline;
+    }
+    h1{
+        color: $beige;
+        padding: 50px 0 0 50px;
+    }
+    .article{
+        background-color: $beige;
+        width: 80%;
+        margin: 50px  auto ;
+        .corps{
+            display: flex;
+            justify-content:start;
+            align-items: center;
+            .img-date{
+                display: flex;
+                align-items: center;
+                
+
+                .date-article{
+                    background-color: $marron;
+                    color: $beige;
+                    width: 65px;
+                    height: 70px;
+                    font-size: 22px;
+                    margin: 10px;
+                    text-align: center;
+                    
+                }
+                
+            }
+            a{
+                color: $rose;
+            }
+            a:hover{
+                transition: all ease-in 0.1s;
+                text-decoration: underline;
+            }
+
+            .img{
+                margin: 10px;
+                width: 20vh ;
+                height: auto;
+            }
+        }
+        
+    }
+    .article-alone{
+        background-color: $beige;
+        width: 70%;
+        margin: 50px  auto ;
+        padding: 20px;
+        .img{
+            display: block;
+            width: 80%;
+            margin: auto;
+        }
+        .date-single{
+            color: grey;
+        }   
+        pre{
+            white-space:pre-wrap;
+        } 
+    }
+}
+@media screen and (max-width: 900px){
+    .actualité{
+        .article{
+            width: 90% ;
+        }
+
+        .article-alone{
+            width: 80%;
+        }
+    }
+
+
+
+}
+@media screen and (max-width: 700px){
+    .actualité{
+        .article{
+            .corps{
+                .img-date{
+                flex-direction: column;
+                .date-article{
+                    width: auto;
+                    height: auto;
+                }
+                }
+            }
+    }}}
+@media screen and (max-width: 500px){
+    .actualité{
+        .article{
+            .corps{
+                flex-direction: column;
+                .img{
+                    width: 90%;
+                .date-article{
+                    width: auto;
+                    height: auto;
+                }
+                }
+            }
+    }
+        .article-alone{
+            width: 80%;
+            .img{
+                width: 95%;
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+.paiement{
+    background-color: $beige;
+    width: 100%;
+    h2{
+        padding-top: 10px;
+        text-align: center;
+    }
+    .delivery{
+        background-color: white;
+        width: 30%;
+        margin:30px auto;
+        padding: 20px;
+        span{
+            font-weight: 600;
+        }
+        .container-btn{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            .btn{    
+                color: $marron;
+                border: $marron 1px solid;
+                padding: 10px;
+                transition: all ease-in 0.15s;
+                width: 30%;
+                text-align: center;
+                margin-left: 20px;
+            }
+            .btn:hover{
+                background-color: $marron;
+                color: $beige;
+                cursor: pointer;
+            }
+        }
+    }
+    .bottom{
+        height: 1px;
+    }
+}
+@media screen and (max-width: 900px){
+    .paiement{
+        .delivery{
+            width: 70%;
+
+        }
+
+    }
+}
+@media screen and (max-width: 500px){
+    .paiement{
+        .delivery{
+            width: 70%;
+            .container-btn{
+                    flex-direction: column;
+                    .btn{
+                        width: 70%;
+                        margin: 10px auto ;
+                     }
+
+            }
+        }
+
+    }
+}

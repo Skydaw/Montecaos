@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useRouteMatch} from 'react-router-dom'
+import {Link, useRouteMatch} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -35,14 +35,16 @@ const Article = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         getSingle()},[]
     )
+    
     return (
         <>
-        <div className="article">
-            <h2 className="title-single">{single.title}</h2>
+        <Link to='/actualite'>←retour</Link>
+        <div className="article-alone">
             <img className="img" alt='Ilustration article Blog' src={single.img}></img>
+            <h2 className="title-single">{single.title}</h2>
+            <p className="date-single">{single.date}</p>
 
             <pre className="content-single">{single.body}</pre>
-            <p className="tags-single">{single.date}</p>
         </div>
         </>
     )

@@ -4,7 +4,7 @@ import ProductAll from '../components/produit/ProductAll'
 import ModifProduct from './ModifProduct'
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import CreerArticle from '../components/produit/CreerProduit';
-import Product from './Product';
+import Product from '../components/produit/Product';
 
 
 const url ='http://localhost:5000/api/shop'
@@ -29,7 +29,7 @@ const Boutique = () => {
 
 
     return (
-        <div>
+        <div className='boutique'>
             <h1>Boutique</h1>
             <Router>
             <Switch>

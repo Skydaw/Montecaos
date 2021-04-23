@@ -114,7 +114,7 @@ const CreerArticle  = () => {
                     for(let i = 0; i < accent.length; i++){
                         tag = tag.replace(accent[i], noaccent[i]);
                     }
-                    setTitleUrl(tag.replace(espace,"-"))
+                    setTitleUrl(tag.replace(espace,"-").replace("!","").replace(':',''))
                     }
                     }/>
                 </div>

@@ -5,14 +5,14 @@ import Register from '../components/user/Register'
 import Login from '../components/user/Login'
 import ModifUser from '../components/user/ModifUser'
 import { UserContext } from '../js/UserContext'
+import Order from '../components/user/Order';
 
 
 const Compte = () => {
     const{user}=useContext(UserContext)
-    const b = window.document.referrer
-    console.log(b)
+    const from = window.document.referrer
     function check(){
-        if(b =='http://localhost:3000/boutique'){
+        if(from ==='http://localhost:3000/boutique'){
             const objet = document.querySelectorAll(".clss")
             console.log('yo')
             objet.forEach(function(removeClass){
@@ -24,7 +24,7 @@ useEffect(()=>{
   },[])
 
     return (
-        <div>
+        <div className='account'>
             <h1>Mon compte</h1>
             
                     {!user?(
@@ -41,18 +41,24 @@ useEffect(()=>{
             </Router>
                     ):(
                         <Router>
-                <div>Bonjour{user.nom}</div>
+                <div className='user-div'>
+
                 <Switch>
                     <Route name='mon compte' exact path='/compte/'>
+                <h2>Bonjour{user.prenom} {user.nom}</h2>
                         <User/>
+                    </Route>
+                    <Route name='Voir ses commandes' path='/compte/user/facture'>
+                        <Order user={user}/>
                     </Route>
                     <Route name='modifier profil user' path='/compte/user/modifier'>
                         <ModifUser/>
                     </Route>
                 </Switch>
+                </div>
             </Router>
-            
             )}
+            <div className='bottom'></div>
         </div>
     )
 }

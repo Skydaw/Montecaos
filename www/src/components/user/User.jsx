@@ -23,13 +23,15 @@ const User = () => {
     
 
     return (
-        <div>
-            <h2> bonjour {user.prenom} </h2>
-            <div>
-                <button onClick={eatCookie}>deconnecter</button>
-              <Link to='/compte/user/modifier'>modifier</Link>
-            </div>
-        </div>
+        <>
+              <Link className='btn'  to='/compte/user/modifier'>Modifier votre profil</Link>
+
+              <Link className='btn' to={{
+                  pathname:'/compte/user/facture',
+                  state:{userid:user.userid}
+                }}>Vos commandes</Link>
+                <div className='disconect' onClick={eatCookie}>deconnecter</div>
+        </>
     )
 }
 

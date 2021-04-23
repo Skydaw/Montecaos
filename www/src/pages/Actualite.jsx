@@ -7,11 +7,11 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-do
 import CreerArticle from '../components/article/CreerArticle';
 
 
-const url ='http://localhost:5000/api/blog'
 
 const Actualite = () => {
-    const [blog,setBlog] = useState([]);
   
+  const [blog,setBlog] = useState([]);
+  const url ='http://localhost:5000/api/blog'
     async function getPosts() {
       try {
         const res = await axios.get(url);
@@ -28,7 +28,7 @@ const Actualite = () => {
 
 
     return (
-        <div>
+        <div className='actualité'>
             <h1>Actualité</h1>
             <Router>
 

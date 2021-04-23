@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState,  } from 'react'
+import axios from 'axios';
+import React, { useContext, useState,  } from 'react'
 import { Link } from 'react-router-dom';
 import { UserContext } from '../js/UserContext';
 
@@ -17,11 +18,26 @@ const Panier = () => {
                 const res = await fetch(urlCart,{method:'GET',param:{userid:userid}})
                 res.json()
                 .then((res)=>{
+                    console.log(res.data)
                     setCart(res.data)
                     setItems(res.data.items)
 
                 })
                 
+            }catch(error){
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            }
+        }
+        async function  emptyCart(){
+            const url = `http://localhost:5000/api/cart/empty-cart/${user._id}`
+
+            try{
+                const res = await axios.delete(url)
+                window.location.href = 'http://localhost:3000/panier'
+
+                console.log(res)
             }catch(error){
                 console.log(error.response.data);
                 console.log(error.response.status);
@@ -51,21 +67,37 @@ getcart()
 
 
     return(
-        <div>
-            <h1>Votre Panier
-</h1>        
+        <div className='cart'>
+  
+            <h1>Votre Panier</h1>
+        <button onClick={emptyCart}>Vider le panier</button>
+      
+
         {items.map((u,i)=>{
+            console.log(u)
             return(
-                <>
-            <p>{u.productId.name}</p>
-            <p>{u.price}€</p>
-            <p>{u.quantity}</p>
-            </>
+                <div className='product'>
+            <div className='product-detail'>
+                <h3>{u.productName}</h3>
+               <h3>Prix unitaire : {u.price}€</h3>
+            </div>
+            <div className='product-detail'>
+                <p>Quantité: {u.quantity}</p>
+                <h3>prix du lot: {u.total}€</h3>
+            </div>
+
+
+                </div>
         )})} 
-            <h3>prix total {cart.subTotal}€</h3>   
+        <div>
+            
+        </div>
+            <div className='product-total'>
+                <Link className='btn' to='/Paiement'><div>Passer a la commande</div></Link>
+                <h2>prix total {cart.subTotal}€</h2>   
+            </div>
+            <div className='bottom'></div>
 
-
-                <Link to='/Paiement'><div>Passer a la commande</div></Link>
     
         </div>
     )
