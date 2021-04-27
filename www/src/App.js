@@ -64,15 +64,15 @@ function App() {
           <Route path="/" exact component={Accueil}/> 
           <Route path="/biscuits" exact  component={Biscuits}/>
           <Route path="/actualite" exact component={Actualite}/>
-          <Route path="/boutique" exact component={Boutique}/>
-          <Route path="/compte" exact component={Compte}/>
+          <Route path="/boutique" sensitive  component={Boutique}/>
+          <Route path="/compte" exact strict component={Compte}/>
           <Route path="/panier"exact component={Panier}/>
           <Route path="/contact" exact component={Contact}/>
           <Route path="/conditions-generales-de-vente" exact component={Cgv}/>
           <Route path="/mentions-legales" exact component={Mention}/>
           <Route path="/politique-de-confidentialite" exact component={Politique}/>
           <Route path='/Paiement'exact component={paiement}/>
-          <Route path="/128462" exat component={AdminPanel}/>
+          <Route path="/Admin" exact component={AdminPanel}/>
         </Switch>
       </main>
       <Footer/>

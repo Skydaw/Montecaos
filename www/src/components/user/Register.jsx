@@ -17,7 +17,6 @@ const Register = () => {
     const[pays,setPays]=useState("")
     const[telephone,setTelephone]=useState("")
     const[redirect,setRedirect]=useState("")
-    const [role,setRole]=useState("")
 
     const submit=async(e)=>{
         e.preventDefault();
@@ -37,7 +36,6 @@ const Register = () => {
                 codepostal,
                 pays,
                 telephone,
-                role
             })
         })
 
@@ -45,7 +43,6 @@ const Register = () => {
     
     }
     useEffect(()=>{
-        setRole('user')
     },[])
     
     if(redirect){
@@ -65,7 +62,7 @@ const Register = () => {
                 onChange={e=>setPrenom(e.target.value)}
                 />
                 <div className='label'>Date de naissance</div>
-                <input type="date   " className="form-control"required placeholder="Date de naissance"id='birthday-input'value={datenaissance}
+                <input type="date" className="form-control"required placeholder="Date de naissance"id='birthday-input'value={datenaissance}
                 onChange={e=>setDatenaissance(e.target.value)}
                 />
                 <div className='label'>Email</div>

@@ -1,0 +1,203 @@
+
+.admin{
+    min-height: 100vh;
+    background-color: $marron;
+    a{
+        color: $rose;
+        font-size: 22px;
+        font-weight: 700; 
+        
+    }
+    textarea{
+        width: 60%;
+        height: 30vh;
+    }
+    .create-container{
+        width: 100%;
+    }
+    .btn-create{    
+        padding: 10px;
+        margin: 10px auto;
+        transition: all ease-in 0.15s;
+        width: 30%;
+        text-align: center;
+        background-color: white;
+
+        a{
+            color:$marron;
+            font-size: 22px;
+            font-weight: 700; 
+            text-align: center;           
+        }
+    }
+    .btn-create:hover{
+        background-color: $beige;
+        cursor: pointer;
+    }
+    .btn-create:hover a{
+        color:white;
+    }
+    .admin-div{
+        width: 40%;
+        background-color: white;
+        margin: auto;
+        min-height: 20vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h2{
+            text-align: center;
+        }
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: $marron;
+
+        }
+        .btn-create{    
+            border: $beige 1px solid;
+            padding: 10px;
+
+
+            margin: 10px;
+            transition: all ease-in 0.15s;
+            width: 30%;
+            text-align: center;
+        }
+        .btn-create:hover{
+            color:white;
+            background-color: $beige;
+            cursor: pointer;
+        }
+        .btn-admin-list{
+            width: 100%;
+            display: flex;
+            .btn-admin{    
+                border: $marron 1px solid;
+                padding: 10px;
+
+
+                margin: 10px;
+                transition: all ease-in 0.15s;
+                width: 30%;
+                text-align: center;
+            }
+            .btn-admin:hover{
+                color:white;
+                background-color: $marron;
+                cursor: pointer;
+            }
+            .btn-admin:hover a{
+                color: white;
+            }
+
+        }
+        .disconect{
+            color: red;
+            border: red 1px solid;
+            padding: 10px;
+            transition: all ease-in 0.15s;
+            width: 60%;
+            text-align: center;
+            margin: 20px 20% 10px;
+        }
+        .disconect:hover{
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+
+    }
+    .all-article{
+        padding-top: 20px;
+        background-color: $marron;
+        margin-bottom: 0;
+        padding-bottom: 50px ;
+        a{
+            color: $rose;
+            font-weight: 600;
+            font-size: 22px;
+        }   
+        a:hover{
+            transition: all ease-in 0.1s;
+            text-decoration: underline;
+        }
+    }
+    h1{
+        color: $beige;
+        padding: 50px 0 0 50px;
+    }
+    .article-alone{
+        background-color: $beige;
+        width: 70%;
+        margin: 50px  auto ;
+        padding: 20px;
+        .img{
+            display: block;
+            width: 80%;
+            margin: auto;
+        }
+        .date-single{
+            color: grey;
+        }   
+        pre{
+            white-space:pre-wrap;
+        } 
+    }
+    .article{
+        background-color: $beige;
+        width: 80%;
+        margin: 50px  auto ;
+        .corps{
+            display: flex;
+            justify-content:start;
+            align-items: center;
+            .img-date{
+                display: flex;
+                align-items: center;
+    
+                .date-article{
+                    background-color: $marron;
+                    color: $beige;
+                    width: 65px;
+                    height: 70px;
+                    font-size: 22px;
+                    margin: 10px;
+                    text-align: center;
+                    
+                }
+        
+            }
+            a{
+                color: $rose;
+            }
+            a:hover{
+                transition: all ease-in 0.1s;
+                text-decoration: underline;
+            }
+    
+            .img{
+                margin: 10px;
+                width: 20vh ;
+                height: auto;
+            }
+        }
+    
+    }
+       
+}
+.bottom{
+    height: 1px;
+}
+@media screen and (max-width: 1300px){
+    
+
+}
+
+@media screen and (max-width: 900px){
+
+}
+@media screen and (max-width: 500px){
+
+}

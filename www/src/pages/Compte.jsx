@@ -1,5 +1,5 @@
-import React, { useContext, useEffect} from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useContext, useEffect, useState} from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import User from '../components/user/User'
 import Register from '../components/user/Register'
 import Login from '../components/user/Login'
@@ -10,18 +10,26 @@ import Order from '../components/user/Order';
 
 const Compte = () => {
     const{user}=useContext(UserContext)
+    const[role,setRole]=useState(false)
     const from = window.document.referrer
     function check(){
         if(from ==='http://localhost:3000/boutique'){
             const objet = document.querySelectorAll(".clss")
-            console.log('yo')
             objet.forEach(function(removeClass){
                 removeClass.classList.remove('hide')
             } 
             )}}
 useEffect(()=>{
-    check()    
+    check();
+
   },[])
+    if(user&&role==false){
+        setRole(user.role)
+        console.log('yo')
+    }
+    if(role==='Admin'){
+        return<Redirect to ='/Admin'/>
+    }
 
     return (
         <div className='account'>
@@ -36,27 +44,30 @@ useEffect(()=>{
                     </Route>
                     <Route name='creer un compte'path='/compte/register'>
                         <Register/>
-                    </Route >
+                    </Route >   
                     </Switch>
             </Router>
                     ):(
+                        
                         <Router>
-                <div className='user-div'>
-
-                <Switch>
-                    <Route name='mon compte' exact path='/compte/'>
-                <h2>Bonjour{user.prenom} {user.nom}</h2>
-                        <User/>
-                    </Route>
-                    <Route name='Voir ses commandes' path='/compte/user/facture'>
-                        <Order user={user}/>
-                    </Route>
-                    <Route name='modifier profil user' path='/compte/user/modifier'>
-                        <ModifUser/>
-                    </Route>
-                </Switch>
-                </div>
-            </Router>
+                        
+                        <div className='user-div'>
+            
+                         <Switch>
+                            <Route name='mon compte' exact path='/compte/'>
+                            <h2>Bonjour {user.prenom} {user.nom}</h2>
+                
+                            <User/>
+                        </Route>
+                        <Route name='Voir ses commandes' path='/compte/user/facture'>
+                            <Order user={user}/>
+                        </Route>
+                        <Route name='modifier profil user' path='/compte/user/modifier'>
+                            <ModifUser/>
+                        </Route>
+                    </Switch>
+                    </div>
+                </Router>
             )}
             <div className='bottom'></div>
         </div>

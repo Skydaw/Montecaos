@@ -17,6 +17,7 @@ const User = () => {
             url:'http://localhost:5000/api/user/logout'}
         );
         setUser(null)
+        
         }
 
         

@@ -52,7 +52,7 @@ const Accueil = () => {
                     </div>
                 </div>
                 
-                <div>bonjour</div>
+                <div></div>
             </div>
         </div>
 

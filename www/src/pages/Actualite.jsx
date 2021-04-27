@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Articleall from '../components/article/Articleall'
-import Article from './Article'
-import Modifarticle from './Modifarticle'
+import Article from '../components/article/Article'
+import Modifarticle from '../components/admin/Modifarticle'
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import CreerArticle from '../components/article/CreerArticle';
+import CreerArticle from '../components/admin/CreerArticle';
 
 
 
@@ -33,18 +33,18 @@ const Actualite = () => {
             <Router>
 
             <Switch>
-                <Route name="creer" path='/actualite/creer-article'>
+                {/* <Route name="creer" path='/actualite/creer-article'>
                   <CreerArticle/>
                 </Route>
                 <Route name="modification" path='/actualite/modifier/:titleurl'>
                   <Modifarticle/>
-                </Route>
+                </Route> */}
                 <Route name="Single" path="/actualite/:titleurl">
                   <Article/>
                 </Route>
                 <Route path="/actualite" exact>
-                  <NavLink to='/actualite/creer-article'>Creer un article</NavLink>
-                  <br/>
+                  {/* <NavLink to='/actualite/creer-article'>Creer un article</NavLink> */}
+
                   <Articleall  blog={blog} />
                 </Route>
 

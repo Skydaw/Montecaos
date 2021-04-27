@@ -111,11 +111,11 @@ const Modifarticle = () => {
                 <button key="submit"onClick={handleSubmit}>Previsualiser</button>
             </form>
 
-            <div className="article off">
+            <div className="article-alone off">
                 <h2 className="title-single">{title2}</h2>
                 <img className="img" alt='Ilustration article Blog' src={img}></img>
                 <pre className="content-single">{body2}</pre>
-            <p className="tags-single">{date2}</p>
+            <p className="date-single">{date2}</p>
             <button onClick={uploadData}>Sauvegarder les modifications</button>
             </div>
 

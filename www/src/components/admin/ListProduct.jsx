@@ -1,22 +1,31 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useContext } from 'react';
 import{Link} from'react-router-dom'
-import { UserContext } from '../../js/UserContext'
 
 
 
 
+const ListProduct = () => {
+    
+
+    const url = "http://localhost:5000/api/shop"; 
+    const [product,setProduct] = useState([]);
+    
+  
+    async function getPosts() {
+      try {
+        const res = await axios.get(url);
+        setProduct(res.data);
+  
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    useEffect(()=>{
+      getPosts()    
+    },[])
 
 
-
-
-
-const ProductAll = ({product}) => {
-    const{user}=useContext(UserContext);
-
-
-
-    const url = "http://localhost:5000/api/shop";
     
     
 
@@ -59,41 +68,11 @@ const ProductAll = ({product}) => {
                 const clss =`.delmethod${producturl}`
                 const objet = document.querySelectorAll(clss)
                 objet.forEach(function(removeClass){
-                    removeClass.classList.add(' hide')
+                    removeClass.classList.add('hide')
                 })
             }
-             function addCart(){
-                if(!user){
-                    document.location.href="http://localhost:3000/compte"
-                }else{
-                    const userid=`${user._id}`
-                    const urlCart = `http://localhost:5000/api/cart/`
-                    try{
-                        axios.post(urlCart,{
-                            userid, 
-                            _id,
-                            name,
-                            price,
-                            quantity:1,
-                        }).then(
-                            direct()
-                        )
-                    }catch(error){
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    }
-                }
-                }
-                function go(){
-                    addCart()
+             
 
-                }
-                async function direct(){
-                    // eslint-disable-next-line no-implied-eval
-                    setTimeout('window.location="http://localhost:3000/panier";'
-                    ,100)
-                }
             
             return (
                 
@@ -108,21 +87,21 @@ const ProductAll = ({product}) => {
                     <Link className="item-link" to={`boutique/${producturl}`}>
                         voir plus
                     </Link> 
-                    <div className='btn' onClick= {go} >Ajouter au panier</div>
                     
                 </div>
-{/* 
-                <Link  to={`boutique/modifier/${producturl}`}>Modifier</Link>
+
+                <Link  to={`/admin/product/modifier/${producturl}`}>Modifier</Link>
                 <button  onClick={verif}>Suprimmer l'article</button>
                 <p className={`delmethod${producturl} hide`}>Êtes-vous sûrs ?</p>
                 <button className={`delmethod${producturl} hide`} onClick={del}>Oui</button>
-                <button  className={`delmethod${producturl} hide`} onClick={hide}>Non</button> */}
+                <button  className={`delmethod${producturl} hide`} onClick={hide}>Non</button> 
             </div>
-
         )
         })}
         </div>
     )    
 }
 
-export default ProductAll
+
+
+export default ListProduct

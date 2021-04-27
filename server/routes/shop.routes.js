@@ -88,19 +88,29 @@ router.get("/image/:filename", (req, res) => {
 // route post un nouvelle article
 router.post ("/", async (req,res)=>{
 
-  const product = new Product({
-      producturl:req.body.producturl,
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      feature:req.body.feature,
-      img:req.body.img,
+  const rid = req.body.userid
+
+  if(rid==='60866c88bf74063ea0f62d74'){
+
+    
+    const product = new Product({
+      producturl:req.body.product.producturl,
+      name: req.body.product.name,
+      description: req.body.product.description,
+      price: req.body.product.price,
+      feature:req.body.product.feature,
+      img:req.body.product.img,
       
-  }) 
+    }) 
    await product.save()
-      .then((result)=>{
-      res.send(result);
-  }).catch((err)=> next(err))
+   .then((result)=>{
+     console.log(result)
+     res.send(result);
+    }).catch((err)=> next(err))
+  }else{
+    res.json({message: error.message})
+
+  }
 
  });
 
@@ -129,16 +139,21 @@ router.get('/:producturl',async (req, res) => {
 })
 
 router.put('/:producturl',async (req,res) =>{
+  const rid = req.body.userid
+
+  if(rid==='60866c88bf74063ea0f62d74'){
+
+  
     Product.findOne({producturl:req.params.producturl},function(err, product){
         if (err){
             res.send(err)
         }
         else{
                 
-            product.name=req.body.name;
-            product.description=req.body.description;
-            product.price=req.body.price;
-            product.feature=req.body.feature;
+            product.name=req.body.product.name;
+            product.description=req.body.product.description;
+            product.price=req.body.product.price;
+            product.feature=req.body.product.feature;
             product.save(function(err){
                     if(err){
                     res.send
@@ -150,7 +165,10 @@ router.put('/:producturl',async (req,res) =>{
             }
             
     })
+  }else{
+    res.json({message:'Error'})
 
+  }
 })
 router.delete('/:producturl',async (req,res) =>{
     Product.remove({producturl:req.params.producturl},function(err, product){

@@ -26,7 +26,8 @@ router.post('/register', async (req,res)=>{
         codepostal:req.body.codepostal,
         pays:req.body.pays,
         telephone:req.body.telephone,
-        role:req.body.role
+        role:'user'
+
     })
 
    await user.save()

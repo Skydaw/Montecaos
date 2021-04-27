@@ -8,7 +8,6 @@ exports.addItemToCart = async (req, res) => {
     const productName = req.body.name
     const quantity = req.body.quantity;
     const price = req.body.price
-    console.log(req.body)
 
     try {
         getcart = async () => {
@@ -20,7 +19,6 @@ exports.addItemToCart = async (req, res) => {
             return carts[0];
         };
         let cart = await getcart();
-        console.log(cart)
 
         //Verifie si le chariot existe
         if (cart) {

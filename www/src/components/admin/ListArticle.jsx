@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import{Link } from'react-router-dom'
 
@@ -5,16 +6,26 @@ import{Link } from'react-router-dom'
 
 
 
+const ListArticle = () => {
+    const [blog,setBlog] = useState([]);
+  const url ='http://localhost:5000/api/blog'
+    async function getPosts() {
+      try {
+        const res = await axios.get(url);
+        setBlog(res.data);
+  
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    useEffect(()=>{
+      getPosts()    
+    },[])
 
-
-const Articleall = ({blog}) => {
-    
-    const url = "http://localhost:5000/api/blog";
-    console.log({blog})
 
     
     return(
-        <div className='All-article'>    
+        <div className='all-article'>    
         {blog.map((p) => {
             const { _id, titleurl, title, body, date, img} = p;
             const imgName= img.substr(37)
@@ -62,20 +73,18 @@ const Articleall = ({blog}) => {
                         <div>
                             <h2 className="title-article" >{title}</h2>
                             <div className="content-article">{body.substring(0,150)}...</div>
-                            <Link to={`actualite/${titleurl}`}>
-                                voir plus
-                            </Link> 
+
                         </div>
 
                     </div>
 
                    
                 </div>
-                    {/* <Link to={`actualite/modifier/${titleurl}`}>Modifier</Link>
+                    <Link to={`actualite/modifier/${titleurl}`}>Modifier</Link>
                     <button onClick={verif}>Suprimmer l'article</button>
                     <p  className={`delmethod${titleurl} hide`}>Êtes-vous sûrs ?</p>
                     <button  className={`delmethod${titleurl} hide`} onClick={del}>Oui</button>
-                    <button  className={`delmethod${titleurl} hide`} onClick={hide}>Non</button>  */}
+                    <button  className={`delmethod${titleurl} hide`} onClick={hide}>Non</button> 
 
                     
                 </>
@@ -83,6 +92,7 @@ const Articleall = ({blog}) => {
         })}
         </div>
     )    
-}
+}   
 
-export default Articleall
+
+export default ListArticle

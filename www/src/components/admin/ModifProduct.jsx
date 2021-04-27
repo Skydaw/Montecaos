@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useRouteMatch} from 'react-router-dom'
 import axios from 'axios'
+import { UserContext } from '../../js/UserContext'
 
 
 
@@ -17,10 +18,13 @@ const ModifProduct = () => {
     const[name2,setName2]=useState("")
     const[body2,setBody2]=useState("")
     const[date2,setDate2]=useState("")
-    const [product,setProduct] = useState([]);
+    const[product,setProduct] = useState([]);
     const[img,setImg]=useState("")
     const match = useRouteMatch();
-    const producturl=`${url}/${match.params.producturl}`
+    const producturl=`${url}/${match.params.titleurl}`
+    const[userid,setUserdid]=useState('')
+
+    const{user}=useContext(UserContext)
 
     
 
@@ -31,10 +35,15 @@ const ModifProduct = () => {
     async function uploadData() {
 
         try {
+            console.log(producturl)
             
-            const res =await axios.put(producturl, product);
-            console.log(res)
-            console.log(product)
+            const put =await axios({    
+                method:'PUT',
+                url:producturl, 
+                data:{product,userid}});
+            
+            console.log(put)    
+
             window.location.href = 'http://localhost:3000/boutique'
             
 
@@ -59,6 +68,7 @@ const ModifProduct = () => {
         setDate2(price)
         setName2(name)
         setFeature2(feature)
+        setUserdid(user._id)
 
         const off=document.querySelector('.off')
         if(off!==null){
@@ -90,10 +100,10 @@ const ModifProduct = () => {
 
 
     return (
-        <div className="container">
+        <div key={img}className="create-container">
             <form >
                 <div>
-                    <label htmlFor="name">Titre de l'article</label>
+                    <label htmlFor="name">Nom du prduit</label>
                     <input type="text" className="form-control"required placeholder=""id='username-input'value={name}
                     onChange={(e)=>{
                         const tag =e.target.value;
@@ -107,29 +117,33 @@ const ModifProduct = () => {
                     onChange={e=>setDescription(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="name">Date</label>
+                    <label htmlFor="name">Prix(ne pas mettre le symbole €)</label>
                     <input type="text" className="form-control"required placeholder=""id='username-input'value={price}
                     onChange={e=>setPrice(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="desc">feature</label>
-                    <textarea type="text" className="form-control"required placeholder=""id='username-input'value={feature}
+                    <label htmlFor="desc">Caracteristiques du produit(bio ou autre)</label>
+                    <input type="text" className="form-control"required placeholder=""id='username-input'value={feature}
                     onChange={e=>setFeature(e.target.value)}/>
                 </div>
 
                 <button key="submit"onClick={handleSubmit}>Previsualiser</button>
             </form>
 
-            <div className="article off">
-                <h2 className="name-single">{name2}</h2>
+            <div className="off">
+                <div  className="solo-item ">
+
                 <img className="img" alt='Ilustration article Blog' src={img}></img>
-                <pre className="content-single">{body2}</pre>
-
-            <p className="tags-single">{date2}</p>
-            <pre className="content-single">{feature2}</pre>
-
+                <div className='bloc'>
+                    <h2 className="title-single">{name2}</h2>
+                    <p className="content-single">{body2}</p>
+                    <p className="tags-single">{date2}€</p>
+                    <p clclassName="content-single">{feature2}</p>
+                </div>
+                </div>
             <button onClick={uploadData}>Sauvegarder les modifications</button>
             </div>
+            
 
         </div> 
 
