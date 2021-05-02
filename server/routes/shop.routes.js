@@ -6,6 +6,8 @@ const Grid = require("gridfs-stream");
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const path =require("path")
+const id = process.env.id
+
 
 
 const mongoURI =process.env.MONGO_URL;
@@ -52,6 +54,8 @@ let storage = new GridFsStorage({
 
   router.post("/image", upload.single("img"), (req, res,) => {
      res.json({file:req.file})
+      res.json('error')
+    
    });
 //    get img
 router.get("/image/:filename", (req, res) => {
@@ -77,20 +81,24 @@ router.get("/image/:filename", (req, res) => {
   });
   // delete image
   router.delete('/image/:filename', (req,res) =>{
+    const rid = req.query.userid
+    if(rid===id){
       gfs.remove({filename: req.params.filename , root:'shopUpload'},(err)=>{
         if(err){
           return res.status(404).json({err:err})
         }
         res.json({message:'suppression effectuée '})
       })
-    
+    }else{
+      res.json('error')
+    }
 })
 // route post un nouvelle article
 router.post ("/", async (req,res)=>{
 
-  const rid = req.body.userid
+  const _id = req.body.userid
 
-  if(rid==='60866c88bf74063ea0f62d74'){
+  if(_id===id){
 
     
     const product = new Product({
@@ -100,6 +108,7 @@ router.post ("/", async (req,res)=>{
       price: req.body.product.price,
       feature:req.body.product.feature,
       img:req.body.product.img,
+      order:req.body.product.order
       
     }) 
    await product.save()
@@ -108,8 +117,7 @@ router.post ("/", async (req,res)=>{
      res.send(result);
     }).catch((err)=> next(err))
   }else{
-    res.json({message: error.message})
-
+    res.json('error')
   }
 
  });
@@ -128,6 +136,7 @@ router.get('/',async (req, res) => {
    // route for single post
 
 router.get('/:producturl',async (req, res) => {
+ 
     try {
        const product = await Product.findOne({producturl:req.params.producturl})
        res.json(product)
@@ -136,12 +145,13 @@ router.get('/:producturl',async (req, res) => {
         console.warn(error)
         res.json({message: error.message})
     }
+  
 })
 
 router.put('/:producturl',async (req,res) =>{
   const rid = req.body.userid
 
-  if(rid==='60866c88bf74063ea0f62d74'){
+  if(rid===id){
 
   
     Product.findOne({producturl:req.params.producturl},function(err, product){
@@ -154,6 +164,8 @@ router.put('/:producturl',async (req,res) =>{
             product.description=req.body.product.description;
             product.price=req.body.product.price;
             product.feature=req.body.product.feature;
+            product.order=req.body.product.order
+
             product.save(function(err){
                     if(err){
                     res.send
@@ -171,6 +183,10 @@ router.put('/:producturl',async (req,res) =>{
   }
 })
 router.delete('/:producturl',async (req,res) =>{
+  const rid = req.query.userid
+  if(rid===id){
+
+
     Product.remove({producturl:req.params.producturl},function(err, product){
         if (err){
             res.send(err)
@@ -179,6 +195,10 @@ router.delete('/:producturl',async (req,res) =>{
             res.json({message:'suppression effectuée '})
         }
     })
+  }else{
+    res.json({message:'Error'})
+
+  }
 })
 
    

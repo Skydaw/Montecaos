@@ -23,6 +23,8 @@ const ModifProduct = () => {
     const match = useRouteMatch();
     const producturl=`${url}/${match.params.titleurl}`
     const[userid,setUserdid]=useState('')
+    const[order,setOrder]=useState('')
+
 
     const{user}=useContext(UserContext)
 
@@ -62,7 +64,9 @@ const ModifProduct = () => {
             ...{name},
             ...{description},
             ...{price},
-            ...{feature} 
+            ...{feature},
+            ...{order}
+
         });
         setBody2(description)
         setDate2(price)
@@ -89,6 +93,7 @@ const ModifProduct = () => {
             setPrice(res.data.price)
             setImg(res.data.img)
             setFeature(res.data.feature)
+            setOrder(res.data.order)
             try {
             } catch (error) {
                 console.error(error);
@@ -125,6 +130,20 @@ const ModifProduct = () => {
                     <label htmlFor="desc">Caracteristiques du produit(bio ou autre)</label>
                     <input type="text" className="form-control"required placeholder=""id='username-input'value={feature}
                     onChange={e=>setFeature(e.target.value)}/>
+                </div>
+                <div>
+                Ordre d'aparition dans la page
+                <select name="number" value={order} id="number-cart" onClick={
+                    e=>setOrder(e.target.value)}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
                 </div>
 
                 <button key="submit"onClick={handleSubmit}>Previsualiser</button>

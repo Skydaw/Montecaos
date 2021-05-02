@@ -104,7 +104,15 @@ router.get('/', async (req,res)=>{
         })
     }
 })
+router.get('/:_id',async (req,res)=>{
+
+    const user = await  User.findOne({_id:req.params._id})
+    console.log(user)
+    res.send(user)
+
+})
 router.put('/modifier/:_id',(req,res)=>{
+    console.log(req.params._id)
     User.findOne({_id:req.params._id},function(err,user){
         if(err){
             res.send(err)

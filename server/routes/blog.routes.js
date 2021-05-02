@@ -6,6 +6,7 @@ const Grid = require("gridfs-stream");
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const path =require("path")
+const id = process.env.id
 
 
 const mongoURI =process.env.MONGO_URL;
@@ -77,30 +78,42 @@ router.get("/image/:filename", (req, res) => {
   });
   // delete image
   router.delete('/image/:filename', (req,res) =>{
+    const rid = req.query.userid
+    if(rid===id){
       gfs.remove({filename: req.params.filename , root:'uploads'},(err)=>{
         if(err){
           return res.status(404).json({err:err})
         }
         res.json({message:'suppression effectuée '})
       })
-    
+    }else{
+      res.json('error')
+
+    }
 })
 // route post un nouvelle article
 router.post ("/", async (req,res)=>{
+  console.log(req.body)
+  const rid = req.body.userid
+
+  if(rid===id){
 
   const blog = new Blog({
-      titleurl:req.body.titleurl,
-      title: req.body.title,
-      body: req.body.body,
-      date: req.body.date,
-      img:req.body.img,
+      titleurl:req.body.post.titleurl,
+      title: req.body.post.title,
+      body: req.body.post.body,
+      date: req.body.post.date,
+      img:req.body.post.img,
       
   }) 
    await blog.save()
       .then((result)=>{
       res.send(result);
   }).catch((err)=> next(err))
+  }else{
+    res.json('error')
 
+  }
  });
 
 // route for all post
@@ -129,15 +142,19 @@ router.get('/:titleurl',async (req, res) => {
 })
 
 router.put('/:titleurl',async (req,res) =>{
+  const rid = req.body.userid
+  if(rid===id){
+
+
     Blog.findOne({titleurl:req.params.titleurl},function(err, blog){
         if (err){
             res.send(err)
         }
         else{
                 
-            blog.title=req.body.title;
-            blog.body=req.body.body;
-            blog.date=req.body.date;
+            blog.title=req.body.post.title;
+            blog.body=req.body.post.body;
+            blog.date=req.body.post.date;
             blog.save(function(err){
                     if(err){
                     res.send
@@ -149,9 +166,15 @@ router.put('/:titleurl',async (req,res) =>{
             }
             
     })
+  }else{
+    res.json({message:'Error'})
 
+  }
 })
 router.delete('/:titleurl',async (req,res) =>{
+  const rid = req.query.userid
+  if(rid===id){
+
     Blog.remove({titleurl:req.params.titleurl},function(err, blog){
         if (err){
             res.send(err)
@@ -160,6 +183,10 @@ router.delete('/:titleurl',async (req,res) =>{
             res.json({message:'suppression effectuée '})
         }
     })
+  }else{
+    res.json({message:'Error'})
+
+  }
 })
 
    

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState} from 'react'
+import React, { useContext, useState} from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Choose from '../components/admin/Choose';
 import Commandes from '../components/admin/Commandes';
@@ -17,7 +17,7 @@ const AdminPanel = () => {
     const[role,setRole]=useState(false)
 
 
-    if(user&&role==false){
+    if(user&&role===false){
         setRole(user.role)
     }
     if(role==='Admin'){
@@ -39,23 +39,25 @@ const AdminPanel = () => {
                             </Route>
                             <Route name="Liste Article" path="/admin/actualite">
                                 <Link to='/admin'>← Retour aux categories</Link>
-
                                 <div className='btn-create'><Link to='/admin/actualite/creer-article'>Creer un nouvelle article</Link>  </div>
                                 <ListArticle/>
                             </Route>
                             <Route name='Create Produit'path="/admin/product/creer-produit">
+                                <Link to='/admin/product'>← Retour a la liste</Link>
                                 <CreerProduit/>
                             </Route>
                             <Route name="modification" path='/admin/product/modifier/:titleurl'>
+                                <Link to='/admin/product'>← Retour a la liste</Link>
                                 <ModifProduct/>
                             </Route> 
                             <Route name="Liste Produit" path="/admin/product">
-                            <div className='btn-create'><Link to='/admin/product/creer-produit'>Creer un nouveau produit</Link>  </div>
-
+                                <Link to='/admin'>← Retour aux categories</Link>
+                                <div className='btn-create'><Link to='/admin/product/creer-produit'>Creer un nouveau produit</Link>  </div>
                                 <ListProduct/>
                             </Route>
                             <Route name="Liste Commande" path="/admin/commande">
-                                <Commandes/>
+                                <Link to='/admin'>← Retour aux categories</Link>
+                                <Commandes user={user}/>
                             </Route>
                             <Route name="Route" exact path="/Admin">
                                 <Choose></Choose>

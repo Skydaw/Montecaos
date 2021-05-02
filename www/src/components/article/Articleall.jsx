@@ -1,4 +1,3 @@
-import axios from 'axios';
 import{Link } from'react-router-dom'
 
 
@@ -8,47 +7,54 @@ import{Link } from'react-router-dom'
 
 
 const Articleall = ({blog}) => {
-    
-    const url = "http://localhost:5000/api/blog";
-    console.log({blog})
+     document.title="Actualité - Montecaos ";
 
+     
     
     return(
         <div className='All-article'>    
         {blog.map((p) => {
-            const { _id, titleurl, title, body, date, img} = p;
-            const imgName= img.substr(37)
-            async function del() {
-                const imgUrl =`${url}/image/${imgName}`;
-                 const blogurl=`${url}/${titleurl}`;
-                try {
-                    const ris =await axios.delete(imgUrl);
-                    const res =await axios.delete(blogurl);
-                    console.log(ris)
-                    console.log(res)
-                    window.location.href = 'http://localhost:3000/actualite'
-                    
-        
-                } catch (error) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                }
+            const { _id, titleurl, title, body, createdAt, img} = p;
+            let monthLt=''
+            const monthNb = createdAt.substr(5,2)
+            if(monthNb ==='01'){
+                 monthLt='janvier'
             }
-            function verif(){
-                const clss =`.delmethod${titleurl}`
-                const objet = document.querySelectorAll(clss)
-                objet.forEach(function(removeClass){
-                    removeClass.classList.remove('hide')
-                })
+            if(monthNb ==='02'){
+                 monthLt='fevrier'
             }
-            function hide(){
-                const clss =`.delmethod${titleurl}`
-                const objet = document.querySelectorAll(clss)
-                objet.forEach(function(removeClass){
-                    removeClass.classList.add('hide')
-                })
+            if(monthNb ==='03'){
+                 monthLt='mars'
             }
+            if(monthNb ==='04'){
+                 monthLt='avril'
+            }
+            if(monthNb ==='05'){
+                 monthLt='mai'
+            }
+            if(monthNb ==='06'){
+                 monthLt='juin'
+            }
+            if(monthNb ==='07'){
+                 monthLt='juillet'
+            }
+            if(monthNb ==='08'){
+                 monthLt='aout'
+            }
+            if(monthNb ==='09'){
+                 monthLt='septembre'
+            }
+            if(monthNb ==='10'){
+                 monthLt='octobre'
+            }
+            if(monthNb ==='11'){
+                 monthLt='nomvembre'
+            }
+            if(monthNb ==='12'){
+                 monthLt='decembre'
+            }
+         
+           
 
 
             return (
@@ -56,7 +62,7 @@ const Articleall = ({blog}) => {
                 <div className="article" key={_id}  >
                     <div className='corps'>
                         <div className='img-date'>
-                            <div className="date-article">{date}</div>
+                            <div className="date-article">{createdAt.substr(8,2)} {monthLt} {createdAt.substr(0,4)}</div>
                             <img className="img"  alt='Ilustration article Blog' src={img}></img>
                         </div>
                         <div>
@@ -71,13 +77,6 @@ const Articleall = ({blog}) => {
 
                    
                 </div>
-                    {/* <Link to={`actualite/modifier/${titleurl}`}>Modifier</Link>
-                    <button onClick={verif}>Suprimmer l'article</button>
-                    <p  className={`delmethod${titleurl} hide`}>Êtes-vous sûrs ?</p>
-                    <button  className={`delmethod${titleurl} hide`} onClick={del}>Oui</button>
-                    <button  className={`delmethod${titleurl} hide`} onClick={hide}>Non</button>  */}
-
-                    
                 </>
         )
         })}

@@ -40,10 +40,10 @@ const userSchema = new mongoose.Schema({
     pays:{
         type: String,
         require:true,
+
     },
     telephone:{
         type: String,
-        require:true,
     },
     role:{
         type: String,

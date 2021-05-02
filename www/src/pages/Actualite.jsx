@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Articleall from '../components/article/Articleall'
 import Article from '../components/article/Article'
-import Modifarticle from '../components/admin/Modifarticle'
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import CreerArticle from '../components/admin/CreerArticle';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 
 const Actualite = () => {
+  document.title="Actualité - Montecaos ";
+
   
   const [blog,setBlog] = useState([]);
   const url ='http://localhost:5000/api/blog'
@@ -33,18 +33,11 @@ const Actualite = () => {
             <Router>
 
             <Switch>
-                {/* <Route name="creer" path='/actualite/creer-article'>
-                  <CreerArticle/>
-                </Route>
-                <Route name="modification" path='/actualite/modifier/:titleurl'>
-                  <Modifarticle/>
-                </Route> */}
+
                 <Route name="Single" path="/actualite/:titleurl">
                   <Article/>
                 </Route>
                 <Route path="/actualite" exact>
-                  {/* <NavLink to='/actualite/creer-article'>Creer un article</NavLink> */}
-
                   <Articleall  blog={blog} />
                 </Route>
 

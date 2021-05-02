@@ -16,9 +16,11 @@ flex-wrap: wrap;
 }
 .item{
     width: 100%;
+    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
      .item-name{
             text-align: center;
      }
@@ -29,6 +31,14 @@ flex-wrap: wrap;
             text-align: end;
             margin-right: 30px;
      }
+     .see-more{
+        font-weight: 600;
+        font-size: 22px;
+        margin-right: 100%;
+        text-align: right;
+        white-space: nowrap;
+
+    }
     img{
         width:100%
     }
@@ -49,78 +59,165 @@ flex-wrap: wrap;
         
     
 }
-
+.item-link{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .item-link:hover{
     transition: all ease-in 0.35s;
-
     background-color: $marronLeger;
+    height: 100%;
+    .see-more{
+        transition: all ease-in 0.35s;
+        margin-right: 0%;
+    }
+    .img{
+        transition: all ease-in 0.35s;
 
+        filter : grayscale(75%);;
+    }
+}
+.return{
+    color: $rose;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 20px;  
+}
+.return:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.img-container{
+    width: 50%;
 }
 
 .solo-item{
+    color: $marron;
     width: 80%;
-    margin: auto;
-    background-color: white;
+    margin: 20px auto;
     display: flex;
+    justify-content: space-around;
+
     .img{
-        width: 30%;
-        margin: 30px auto;
+        width: 100%;
+        height: auto;
     }
+    
     .bloc{
-        width: 60%;
+        width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        p{
-            width: 100%;
+        >h2{
+            background-color: $beigeLeger;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 50px;
         }
-
-        >div{ 
+        .sous-bloc{
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 20px;
-
-            .btn{    
-                color: $marron;
-                border: $marron 1px solid;
-                padding: 10px;
-                transition: all ease-in 0.15s;
-                width: 30%;
-                text-align: center;
-                margin: 0  10px 0 20px ;
+            flex-direction: column;
+            background-color: $beigeLeger;
+            align-items: flex-start;
+            padding: 20px;
+            .tags-single{
+                color: $rose;
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 20px;
             }
-            .btn:hover{
-                background-color: $marron;
-                color: $beige;
-                cursor: pointer;
+            p{
+                width: 100%;
+            }
+            
+            >div{ 
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                select{
+                    height: 40px ;
+                }
+                
+                .btn{   
+                    height: 20px; 
+                    color: $marron;
+                    border: $marron 1px solid;
+                    padding: 10px;
+                    transition: all ease-in 0.15s;
+                    text-align: center;
+                    margin: 0;
+                    width: auto;
+                }
+                .btn:hover{
+                    background-color: $marron;
+                    color: $beige;
+                    cursor: pointer;
+                }
             }
         }
     }
 }
+.bloc-complement{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    width: 100%;
+    min-height: 30vh;
+    background-color: $beigeLeger;
+    >div{padding: 20px;
 
-
-
+        h3{
+            margin: 20px 0;
+        }
+        p{
+            margin: 10px;
+        }
+}
+}
 
 
 @media screen and (max-width: 900px){
     .container{
         width: 45%;
     }
+    .img-container{
+        width: 90%;
+        margin:0 auto 50px;
+    }
     .solo-item{
+        margin-top: 20px;
         flex-direction:column;
         width: 90%;
-        .img{
-            width: 75%;
-        }
+
         .bloc{
             width: 90%;
             margin: auto;
         }
     }
 }
+
+
+@media screen and (max-width: 900px){
+    .container{
+        width: 45%;
+    }
+   
+}
 @media screen and (max-width: 500px){
     .container{
+        margin-top: 20px;
+
         width: 90%;
+    }
+    .solo-item .bloc .sous-bloc > div {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .solo-item .bloc .sous-bloc > div .btn{
+        margin:20px 0 0 ;
     }
 }

@@ -12,6 +12,27 @@
     background-color: $marron;
     cursor: pointer;
 }
+.container-account{
+    background-color: white;
+    width: 30%;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    font-size: 22px;
+    font-weight: 600;
+
+    .redirection{
+        color: $rose;
+       
+    }
+    .redirection:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
 .account{
     min-height: 100vh;
     background-color: $beige;
@@ -40,19 +61,31 @@
     }
     .form-register{
         width: 30%;
-        background-color: white;
+        background-color: white;    
         height: auto;
         display: flex;
         flex-direction: column;
-        margin: 20px    auto;
-        .label{
-            margin: 10px 10%
+        margin: 20px auto;
+        .container-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        .label{
+            width: 90%;
+            text-align: start;
+            margin: 10px 0;
+        }
+
         input{
             height: 25px;
             width: 90%;
-            margin: 0 5%;
-        }
+            padding:2px 10px;   
+        }   
+
+
+
+
         p{
             margin: 0px auto 20px;
         }
@@ -82,7 +115,7 @@
     .user-div{
         width: 40%;
         background-color: white;
-        margin: auto;
+        margin: 20px auto;
         min-height: 30vh;
         h2{
             text-align: center;
@@ -111,6 +144,52 @@
 .bottom{
     height: 1px;
 }
+
+.container-order-customer{
+    .margin-left{
+        margin-left: 10px;}
+        margin-top: 20px ;
+    width: 100%;
+    background-color: white;
+    .full{
+        display: flex;
+        width: 100%;
+    }
+    .objet{
+        width: 100%;
+        >.product{
+            display: flex;
+            justify-content:space-between ;
+
+            width: 80%;
+            margin: auto;
+        }   
+        .line{
+            width: 80%;
+            height: 1px;
+            margin: auto;
+            background-color: $marron;
+        }
+        .margin-right{
+            margin-right: 20px;
+        }
+        .margin-left{
+            color: gray;
+            +p{
+                color: gray;
+  
+            }
+        }
+
+    }
+    .price-total{
+        width: 80%;
+        margin:0 auto 50px;
+        text-align: end;
+        
+    }
+}
+
 @media screen and (max-width: 1300px){
     .account{
         .form-register{

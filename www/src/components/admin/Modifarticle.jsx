@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useRouteMatch} from 'react-router-dom'
 import axios from 'axios'
+import { UserContext } from '../../js/UserContext'
 
 
 
@@ -19,6 +20,9 @@ const Modifarticle = () => {
     const[img,setImg]=useState("")
     const match = useRouteMatch();
     const blogurl=`${url}/${match.params.titleurl}`
+    const[userid,setUserdid]=useState('')
+
+    const{user}=useContext(UserContext)
 
     
 
@@ -43,9 +47,12 @@ const Modifarticle = () => {
 
         try {
             
-            const res =await axios.put(blogurl, post);
+            const res =await axios({
+                method:'PUT',
+
+                url:blogurl,
+                data:{post,userid}});
             console.log(res)
-            console.log(post)
             window.location.href = 'http://localhost:3000/actualite'
             
 
@@ -68,6 +75,8 @@ const Modifarticle = () => {
         setBody2(body)
         setDate2(date)
         setTitle2(title)
+        setUserdid(user._id)
+
 
         const off=document.querySelector('.off')
         if(off!==null){

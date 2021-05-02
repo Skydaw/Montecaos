@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import{Link} from'react-router-dom'
+import { UserContext } from '../../js/UserContext';
 
 
 
 
 const ListProduct = () => {
     
+    const{user}=useContext(UserContext)
+    const[userid,setUserdid]=useState('')
 
     const url = "http://localhost:5000/api/shop"; 
     const [product,setProduct] = useState([]);
@@ -37,15 +40,21 @@ const ListProduct = () => {
         
         {product.map((p,i) => {
 
-            const { _id, producturl, name, price, img} = p;
+            const { _id, producturl, name, price, img,order} = p;
 
             const imgName= img.substr(37)
             async function del() {
                 const imgUrl =`${url}/image/${imgName}`;
                  const productUrl=`${url}/${producturl}`;
                 try {
-                    const ris =await axios.delete(imgUrl);
-                    const res =await axios.delete(productUrl);
+                    const res =await axios({    
+                        method:'delete',
+                        url:productUrl, 
+                        params:{userid}});
+                        const ris =await axios({    
+                            method:'delete',
+                            url:imgUrl, 
+                            params:{userid}});
                     console.log(ris)
                     console.log(res)
                     window.location.href = 'http://localhost:3000/boutique'
@@ -58,6 +67,7 @@ const ListProduct = () => {
                 }
             }
             function verif(){
+                setUserdid(user._id)
                 const clss =`.delmethod${producturl}`
                 const objet = document.querySelectorAll(clss)
                 objet.forEach(function(removeClass){
@@ -76,7 +86,7 @@ const ListProduct = () => {
             
             return (
                 
-            <div className='container'>
+            <div className='container'style={{order:order}}>
 
                 <div className="item"key={_id} >
 
@@ -84,9 +94,7 @@ const ListProduct = () => {
                         <h2  className="item-name">{name}</h2>
 
                         <p  className="item-price">{price}€</p>
-                    <Link className="item-link" to={`boutique/${producturl}`}>
-                        voir plus
-                    </Link> 
+
                     
                 </div>
 
@@ -97,6 +105,7 @@ const ListProduct = () => {
                 <button  className={`delmethod${producturl} hide`} onClick={hide}>Non</button> 
             </div>
         )
+        
         })}
         </div>
     )    

@@ -21,7 +21,11 @@ const productSchema = new mongoose.Schema({
     },
     img:{
         type:String
-    }
+    },
+    order:{
+        type: Number,
+        },
+
 
 })
 module.exports = mongoose.model('Product',productSchema)

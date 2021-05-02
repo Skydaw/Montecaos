@@ -1,4 +1,5 @@
 const Order = require("../models/order.model");
+const id = process.env.id
 
 
 exports.postOrder = async (req,res)=>{
@@ -35,38 +36,21 @@ exports.postOrder = async (req,res)=>{
         }
 }
 exports.getOrder = async (req,res)=>{
-    try{
-        
-        const userid = req.params.userid
-        getOrderDb = async ()=>{
-            const orders = await Order.find({"userid":userid}).populate({
-                path: "items.productId",
-                select: "name price total"
-            });;
-            return orders
-        }
+    const userid=req.query.userid
+        if(userid===id){
 
-        let order = await getOrderDb()
-        if(!order) {
-            return res.staus(400).json({
-                type:"Invalid",
-                msg:"no order find"
-            })
-        }
-        res.status(200).json({
-            status: true,   
-            data: orders
-        })
-         
-    } catch (err) {
-        res.status(400).json({
-            type: "Invalid",
-            msg: "Something went wrong",
-            err: err
-        })
-    }
+            const orders = await Order.find()
 
+            res.send(orders)      
+
+             
+
+    }else{
+            res.json('error')
+   } 
 }
+
+
 exports.getOrderUser = async (req, res) => {
     try {
        const order = await Order.find({userid:req.params.userid})

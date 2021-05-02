@@ -7,6 +7,7 @@ const CreerProduit  = () => {
 
     const{user}=useContext(UserContext)
 
+    const[order,setOrder]=useState('')
     const[producturl,setProducturl]=useState("")
     const[name,setName]=useState("")
     const[description,setDescription]=useState("")
@@ -32,7 +33,6 @@ const CreerProduit  = () => {
         const blogurl="http://localhost:5000/api/shop"
         const imgurl="http://localhost:5000/api/shop/image"
         try {            
-            console.log(userid)
             const createPost = await axios({
                 method:'POST',
                 url:blogurl,
@@ -62,7 +62,8 @@ const CreerProduit  = () => {
             ...{description},
             ...{price},
             ...{feature},
-            ...{img}
+            ...{img},
+            ...{order}
 
 
         });
@@ -77,7 +78,9 @@ const CreerProduit  = () => {
             ...{description},
             ...{price},
             ...{feature},
-            ...{img}
+            ...{img},
+            ...{order}
+
         });
         setUserdid(user._id)
         setBody2(description)
@@ -128,7 +131,7 @@ const CreerProduit  = () => {
                     for(let i = 0; i < accent.length; i++){
                         tag = tag.replace(accent[i], noaccent[i]);
                     }
-                    setProducturl(tag.replace(espace,"-").replace("!","").replace(':',''))
+                    setProducturl(tag.replace(espace,"-").replace("!","").replace(':','').replace('?','').replace('.',''))
 
                     }
                     }/>
@@ -151,6 +154,20 @@ const CreerProduit  = () => {
                     <label htmlFor="name">Caracteristiques du produit(bio ou autre)</label>
                     <input type="text" className="form-control"required placeholder=""id='username-input'
                     onChange={e=>setFeature(e.target.value)}/>
+                </div>
+                <div>
+                Ordre d'aparition dans la page
+                <select name="number" id="number-cart" onClick={
+                    e=>setOrder(e.target.value)}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
                 </div>
                 <input
                     type="file"

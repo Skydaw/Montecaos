@@ -6,9 +6,11 @@ import Login from '../components/user/Login'
 import ModifUser from '../components/user/ModifUser'
 import { UserContext } from '../js/UserContext'
 import Order from '../components/user/Order';
+import CreatedAccount from '../components/user/CreatedAccount';
 
 
 const Compte = () => {
+
     const{user}=useContext(UserContext)
     const[role,setRole]=useState(false)
     const from = window.document.referrer
@@ -22,10 +24,10 @@ const Compte = () => {
 useEffect(()=>{
     check();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-    if(user&&role==false){
+    if(user&&role===false){
         setRole(user.role)
-        console.log('yo')
     }
     if(role==='Admin'){
         return<Redirect to ='/Admin'/>
@@ -44,7 +46,11 @@ useEffect(()=>{
                     </Route>
                     <Route name='creer un compte'path='/compte/register'>
                         <Register/>
-                    </Route >   
+                    </Route >
+                    <Route name='compte creer' path='/compte/compte-creer'>
+                        <CreatedAccount/>
+                    </Route>
+                       
                     </Switch>
             </Router>
                     ):(

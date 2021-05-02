@@ -24,7 +24,7 @@ const ModifUser = () => {
 
         try {
             const url= `http://localhost:5000/api/user/modifier/${user._id}`
-            const res =await axios.put(url,{
+            await axios.put(url,{
                     nom:nom,
                     prenom:prenom,
                     email:email,
@@ -59,6 +59,7 @@ const ModifUser = () => {
         setCodepostal(user.codepostal)
         setPays(user.pays)
         setTelephone(user.telephone)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     if(redirect){

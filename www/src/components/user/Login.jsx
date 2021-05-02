@@ -10,7 +10,9 @@ const Login = () => {
     const[password,setPassword]=useState("")
 
 
+    document.title="Se connecter - Montecaos";
     const submit=async(e)=>{
+
         e.preventDefault();
         await fetch('http://localhost:5000/api/user/login',{
             method:'POST',

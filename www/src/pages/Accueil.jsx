@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Accueil = () => {
+      document.title="Montecaos - Douceur et Gourmandise";
+
     return (
 
         <div className="main">
@@ -39,20 +41,21 @@ const Accueil = () => {
                 <div className='container'>
                 <div className='fabrique'>
                     <div>
-                        <h2>Un peu d'histoire</h2>
+                        <h2>La fabrication</h2>
                         <div className='line-separator'></div>
-                        <p className="text">De nombreuse personne se souvienne encore du gout de ces fameux sable au gout si unique.
+                        <p className="text">Isabelle et Joseph LOPEZ sont fiers de se mettre aux fourneaux chaque jour. Ce gage de qualité reconnu au « fait maison » crée de petites merveilles qui font le plaisir des gourmands de biscuits montécaos.
                         <br/>
-                        Les montécaos sont des biscuits très connus originaire d'Afrique du nord.
                         <br/>
-                        Ils sont souvent présent sur nos tables de fin d'années, particulierement durant noel.
+                        Le tour  de main reste chez nous une priorité, un savoir-faire qui se transmet de génération en génération dans la famille LOPEZ. 
+
                         </p>
-                        <Link to="/biscuits" >En savoir plus sur nos biscuits →</Link>
                         </div>
                     </div>
                 </div>
                 
-                <div></div>
+                <div>
+                    
+                </div>
             </div>
         </div>
 

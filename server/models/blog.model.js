@@ -13,12 +13,13 @@ const blogSchema = new mongoose.Schema({
     body:{
      type: String,
     },
-    date:{
-    type: String,
-    },
+
     img: {
     type: String
-    }
+    },
 
+
+},{
+    timestamps:true
 })
 module.exports = mongoose.model('Blog',blogSchema)

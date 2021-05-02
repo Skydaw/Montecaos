@@ -2,14 +2,16 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../js/UserContext'
 import { PayPalButton } from "react-paypal-button-v2";
 import axios from 'axios';
+import { Redirect } from 'react-router';
+import Remerciement from './Remerciement';
 
 const Paiement = () => {
 
   const [price,setPrice]=useState('')
   const [data,setData]=useState('')
+  const[redirect,setRedirect]=useState('')
+  const[remerciement,setRemerciement]=useState('')
  
-
-
     const{user}=useContext(UserContext)
     
         
@@ -64,7 +66,7 @@ const Paiement = () => {
 
     const [showPaypal,setShowPaypal]=useState(false);
       function show (){
-        window.location.href = 'http://localhost:3000/compte/'
+        setRedirect(true)
 
       }
       const showPaypalButtons = () => {
@@ -72,30 +74,42 @@ const Paiement = () => {
        setShowPaypal(true);
 
       };
+      if(redirect){
+
+        return<Redirect to='/compte'></Redirect>
+      }
+      if(remerciement){
+        return<Remerciement/>
+      }
 
       if(!showPaypal){
+        document.title="Adresse de livraison - Montecaos";
+
       return (
         <div className='paiement'>
           <h1>Paiement</h1>
           <div className='delivery'>
             <h2>Votre adresse de livraison</h2>
-            <p>{user.prenom} {user.nom}</p>
-            <p>Adresse: <span>{user.adresse}</span></p>
-            <p>Complement d'adresse: <span>{user.complement}</span></p>
-            <p>Code postal:<span> {user.codepospal}</span></p>
-            <p>Ville:<span> {user.ville}</span></p>
-            <p>Pays:<span> {user.pays}</span></p>
-            <p>Telephone:<span> {user.telephone}</span></p>
+            <div className='adress'>
+              <p><span>{user.prenom} {user.nom}</span></p>
+              <p>{user.adresse}</p>
+              <p>{user.complement}</p>
+              <p> {user.codepostal} {user.ville}</p>
+              <p> {user.pays}</p>
+              <p> {user.telephone}</p>
+            </div>
 
             <div className='container-btn'>
               <div className='btn' onClick={show}>Changer d'adresse </div>
 
               <div className='btn' onClick={showPaypalButtons}>Continuer vers le paiement</div>
             </div>
-        </div>
-            <div className='bottom'></div>
+          </div>
+          <div className='bottom'></div>
         </div>
       )}else{
+        document.title="Paiement - Montecaos";
+
         return(
           <div className='paiement'>
             <h2>A payer : {price}€</h2>
@@ -114,7 +128,8 @@ const Paiement = () => {
                   onApprove={() => { 
                     order()
                     emptyCart()
-                    window.location.href = 'http://localhost:3000/'
+                    setRemerciement('true')
+
                   }}
                   />
                   </div>

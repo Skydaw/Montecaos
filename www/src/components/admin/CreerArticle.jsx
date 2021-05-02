@@ -1,17 +1,20 @@
 import axios from 'axios'
-import React,{useEffect, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
+import { UserContext } from '../../js/UserContext'
 
 const CreerArticle  = () => {
+    const{user}=useContext(UserContext)
+
 
     const[title,setTitle]=useState("")
     const[titleurl,setTitleUrl]=useState("")
     const[body,setBody]=useState("")
-    const[date,setDate]=useState("")
     const[img,setImg]=useState("")
     const [post,setPost] = useState([]);
     const[title2,setTitle2]=useState("")
     const[body2,setBody2]=useState("")
-    const[date2,setDate2]=useState("")
+    const[userid,setUserdid]=useState('')
+
 
     const espace = / /gi
 
@@ -28,7 +31,10 @@ const CreerArticle  = () => {
                     "Content-Type":"multipart/form-data"
                 }
             });
-            const createPost = await axios.post(blogurl, post);
+            const createPost = await axios({
+                method:'POST',
+                url:blogurl,
+                data:{post,userid}});
             console.log(createPost)
             console.log(uploadImage)
             window.location.href = 'http://localhost:3000/actualite'
@@ -46,7 +52,6 @@ const CreerArticle  = () => {
             ...{titleurl},
             ...{title},
             ...{body},
-            ...{date},
             ...{img}
         });
         
@@ -59,14 +64,12 @@ const CreerArticle  = () => {
             ...{titleurl},
             ...{title},
             ...{body},
-            ...{date},
             ...{img}
             
         });
 
-
+        setUserdid(user._id)
         setBody2(body)
-        setDate2(date)
         setTitle2(title)
 
 
@@ -127,11 +130,6 @@ const CreerArticle  = () => {
                     }
                 }/>
                 </div>
-                <div>
-                    <label htmlFor="name">Date</label>
-                    <input type="text" className="form-control"required placeholder=""id='username-input'
-                    onChange={e=>setDate(e.target.value)} />
-                </div>
                 <input
                     type="file"
                     className="custom-file-input inputfile"
@@ -146,7 +144,6 @@ const CreerArticle  = () => {
                 <h2 className="title-single">{title2}</h2>
                     <img src="" alt="Preview" className='img image-preview'/>
                 <pre className="content-single">{body2}</pre>
-            <p className="date-single">{date2}</p>
             <button onClick={uploadData}>Créer l'article</button>
             </div>
         </div>

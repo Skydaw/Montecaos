@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../js/UserContext';
 
 const User = () => {
+    document.title="Mon compte - Montecaos";
 
 
 
@@ -32,6 +33,7 @@ const User = () => {
                   state:{userid:user.userid}
                 }}>Vos commandes</Link>
                 <div className='disconect' onClick={eatCookie}>deconnecter</div>
+                <div className='bottom'></div>
         </>
     )
 }
