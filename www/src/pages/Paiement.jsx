@@ -125,7 +125,7 @@ const Paiement = () => {
                       }}],
                     });
                   }}
-                  onApprove={() => { 
+                  onSuccess={() => { 
                     order()
                     emptyCart()
                     setRemerciement('true')
